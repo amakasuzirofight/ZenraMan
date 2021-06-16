@@ -22,7 +22,7 @@ namespace Zenra
             {
                 _playerKill = collision.gameObject.GetComponent<IItemAbsorption>();
                 var itemName = _playerKill?.GetItem();
-                itemName = itemName ?? ItemName.NULL;
+                if (itemName == null) return;
                 _core.AddItem((ItemName)itemName);
             }
             private void OnTriggerExit2D(Collider2D collision)
