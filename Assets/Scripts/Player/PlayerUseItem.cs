@@ -10,7 +10,6 @@ namespace Zenra
     {
         public class PlayerUseItem : MonoBehaviour
         {
-            private Animator animator;
             private PlayerCore _core = null;
             private IInputer _input = new NullInputer();
             private IUseItem _useItem = new NullUseItem();

@@ -7,12 +7,12 @@ namespace Zenra
     namespace Item
     {
         [CreateAssetMenu(menuName = "ItemObj")]
-        public class ItemObject : ScriptableObject
+        public class ItemInfo : ScriptableObject
         {
             [SerializeField]
-            private Sprite sprite;
+            public Sprite sprite;
             [SerializeField]
-            private ItemName itemName;
+            public ItemName itemName;
         }
     }
 }

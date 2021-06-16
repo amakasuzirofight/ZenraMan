@@ -25,8 +25,6 @@ namespace Zenra
                 isHideChange = MyUtility.Locator<IIsHideChange>.GetT();//myUtilityとはnamespace名　こういう書き方もできる
                 hpChange = MyUtility.Locator<IHpChange>.GetT();//
                 hpChange = hpChange ?? new NullEvents();//hpChangeがnullだったらNullEventsが実行される
-
-                _itemList.Add(ItemName.OBON);
                 isHideChange.HideChangeEvent += HideStateChange;
                 hpChange.HpChangeEvent += SubHp;
                 //_ = Hoge();　破棄　_=にすると戻り値があってもVoidと同じ処理速度でやってくれるぽい
@@ -47,6 +45,13 @@ namespace Zenra
                 _itemList?.RemoveAt(0);//ItemListがnullだったらRemoveAtを実行しない
                 return temp;
             }
+
+            public void AddItem(ItemName name)
+            {
+                if (_itemList.Count >= ITEM_LIST_LENGH) return;
+                _itemList.Add(name);
+            }
+
             public void PlayerKill()
             {
                 _hp = 0;
