@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418f678ce1f6ed249aee0440217ee549, type: 3}
   m_Name: DebugObon
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 3fc2bbd409bf34ab6af1637bab569da1, type: 3}
-  itemName: 0
+  sprite: {fileID: 21300000, guid: bdce2a9cb3d0242958c2593a3b8d8742, type: 3}
+  itemName: 1

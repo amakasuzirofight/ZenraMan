@@ -7,6 +7,8 @@
             NULL = -999,
             OBON = 0,
             NIKUMAN,
+            KARAGE,
+
         }
     }
 }

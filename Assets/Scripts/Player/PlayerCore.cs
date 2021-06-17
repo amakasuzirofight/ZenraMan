@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenra.Item;
@@ -17,6 +18,8 @@ namespace Zenra
 
             private IIsHideChange isHideChange = new NullEvents();
             private IHpChange hpChange = new NullEvents();
+
+            public event Action<ItemName> ItemActivation;
             public PlayerCore()
             {
                 _isHide = false;
@@ -48,8 +51,20 @@ namespace Zenra
 
             public void AddItem(ItemName name)
             {
+                if (IsActivate(name))
+                {
+                    ItemActivation(name);
+                    return;
+                }
                 if (_itemList.Count >= ITEM_LIST_LENGH) return;
                 _itemList.Add(name);
+            }
+
+            public bool IsActivate(ItemName name)
+            {
+                if (name == ItemName.KARAGE) return true;
+                if (name == ItemName.NIKUMAN) return true;
+                return false;
             }
 
             public void PlayerKill()
