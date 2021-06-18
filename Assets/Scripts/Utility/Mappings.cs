@@ -24,7 +24,9 @@ namespace MyUtility
             Locator<IHpMaxHeal>.Bind(itemSerector);
             Locator<IHpSmallHeal>.Bind(itemSerector);
             Locator<PlayerCore>.Bind(new PlayerCore());
-            
+            Locator<IObjectTouchable>.Bind(new PlayerItemAbsorption(),0);
+            //Locator<IObjectTouchable>.Bind(new PlayerItemAbsorption(),1);
+            //Locator<IObjectTouchable>.Bind(ここにギミック,2);
         }
     }
 }

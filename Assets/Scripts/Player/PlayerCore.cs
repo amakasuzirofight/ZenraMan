@@ -18,9 +18,9 @@ namespace Zenra
             private bool _isHide;//かくれているかどうか
             private bool _isClimb;      // はしごに登ってるかどうか
 
-            private IIsHideChange isHideChange = new NullEvents();
-            private IHpMaxHeal hpMaxHeal = new NullEvents();
-            private IHpSmallHeal hpSmallHeal = new NullEvents();
+            private IIsHideChange _isHideChange = new NullEvents();
+            private IHpMaxHeal _hpMaxHeal = new NullEvents();
+            private IHpSmallHeal _hpSmallHeal = new NullEvents();
 
             public event Action<ItemName> ItemActivation;
             public PlayerCore()
@@ -28,12 +28,12 @@ namespace Zenra
                 _isHide = false;
                 _hp = MAX_HP;
                 _itemList = new List<ItemName>(ITEM_LIST_LENGH);
-                isHideChange = MyUtility.Locator<IIsHideChange>.GetT();//myUtilityとはnamespace名　こういう書き方もできる
-                hpMaxHeal = MyUtility.Locator<IHpMaxHeal>.GetT();
-                hpSmallHeal = MyUtility.Locator<IHpSmallHeal>.GetT();
-                isHideChange.HideChangeEvent += HideStateChange;
-                hpMaxHeal.MaxHealEvent += HpHealMax;
-                hpSmallHeal.SmallHealEvent += HpHealSmall;
+                _isHideChange = MyUtility.Locator<IIsHideChange>.GetT();//myUtilityとはnamespace名　こういう書き方もできる
+                _hpMaxHeal = MyUtility.Locator<IHpMaxHeal>.GetT();
+                _hpSmallHeal = MyUtility.Locator<IHpSmallHeal>.GetT();
+                _isHideChange.HideChangeEvent += HideStateChange;
+                _hpMaxHeal.MaxHealEvent += HpHealMax;
+                _hpSmallHeal.SmallHealEvent += HpHealSmall;
                 //_ = Hoge();　破棄　_=にすると戻り値があってもVoidと同じ処理速度でやってくれるぽい
             }
            
