@@ -8,7 +8,6 @@
             OBON = 0,
             NIKUMAN,
             KARAGE,
-
         }
     }
 }

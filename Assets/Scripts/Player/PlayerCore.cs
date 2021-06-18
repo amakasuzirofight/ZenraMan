@@ -14,18 +14,25 @@ namespace Zenra
             private int _hp;//_で変数名を決めておけば_で予測変換が使いやすい　privateで使用されたし
             private List<ItemName> _itemList;
             const int ITEM_LIST_LENGH = 1;//アイテムはひとつしか持てない
+            const int MAX_HP = 300;
             private bool _isHide;//かくれているかどうか
 
             private IIsHideChange isHideChange = new NullEvents();
+            private IHpMaxHeal hpMaxHeal = new NullEvents();
+            private IHpSmallHeal hpSmallHeal = new NullEvents();
 
             public event Action<ItemName> ItemActivation;
             public PlayerCore()
             {
                 _isHide = false;
-                _hp = 3;
+                _hp = MAX_HP;
                 _itemList = new List<ItemName>(ITEM_LIST_LENGH);
                 isHideChange = MyUtility.Locator<IIsHideChange>.GetT();//myUtilityとはnamespace名　こういう書き方もできる
+                hpMaxHeal = MyUtility.Locator<IHpMaxHeal>.GetT();
+                hpSmallHeal = MyUtility.Locator<IHpSmallHeal>.GetT();
                 isHideChange.HideChangeEvent += HideStateChange;
+                hpMaxHeal.MaxHealEvent += HpHealMax;
+                hpSmallHeal.SmallHealEvent += HpHealSmall;
                 //_ = Hoge();　破棄　_=にすると戻り値があってもVoidと同じ処理速度でやってくれるぽい
             }
            
@@ -69,16 +76,23 @@ namespace Zenra
                 Debug.Log("死んだ");
             }
 
-            private void SubHp()
-            {
-                Debug.Log("Hp減らす");
-                _hp--;
-            }
-
             private void HideStateChange()
             {
                 Debug.Log("隠れる");
                 _isHide = false; 
+            }
+
+            private void HpHealMax()
+            {
+                Debug.Log("全回復");
+                _hp = MAX_HP;
+            }
+
+            private void HpHealSmall()
+            {
+                const int HEAL_AMOUNT = 100;
+                Debug.Log("回復");
+                _hp += HEAL_AMOUNT;
             }
         }
     }

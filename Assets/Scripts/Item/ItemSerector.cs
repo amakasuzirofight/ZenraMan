@@ -8,9 +8,11 @@ namespace Zenra
     namespace Item
     {
         public class ItemSerector : IUseItem,
-            IIsHideChange
+            IIsHideChange,IHpMaxHeal,IHpSmallHeal
         {
             public event Action HideChangeEvent;
+            public event Action SmallHealEvent;
+            public event Action MaxHealEvent;
 
             void IUseItem.ItemAct(UseItemDS date)
             {
@@ -22,12 +24,15 @@ namespace Zenra
                 switch (name)
                 {
                     case ItemName.NULL:
-                        throw new NullReferenceException(); 
+                        throw new NullReferenceException();
                     case ItemName.OBON:
                         return HideChangeEvent;
                     case ItemName.NIKUMAN:
+                        return SmallHealEvent;
+                    case ItemName.KARAGE:
+                        return MaxHealEvent;
                     default:
-                        return null;
+                        throw new ArgumentNullException();
                 }
             }
         }
