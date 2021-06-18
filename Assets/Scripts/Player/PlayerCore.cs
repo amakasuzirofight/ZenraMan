@@ -9,7 +9,7 @@ namespace Zenra
 {
     namespace Player
     {
-        public class PlayerCore
+        public class PlayerCore : IClimbable
         {
             private int _hp;//_で変数名を決めておけば_で予測変換が使いやすい　privateで使用されたし
             private List<ItemName> _itemList;
@@ -26,6 +26,7 @@ namespace Zenra
             public PlayerCore()
             {
                 _isHide = false;
+                _isClimb = false;
                 _hp = MAX_HP;
                 _itemList = new List<ItemName>(ITEM_LIST_LENGH);
                 _isHideChange = MyUtility.Locator<IIsHideChange>.GetT();//myUtilityとはnamespace名　こういう書き方もできる
@@ -94,6 +95,16 @@ namespace Zenra
                 const int HEAL_AMOUNT = 100;
                 Debug.Log("回復");
                 _hp += HEAL_AMOUNT;
+            }
+
+            void IClimbable.CanClimb()
+            {
+                _isClimb = true;
+            }
+
+            void IClimbable.CannotClimb()
+            {
+                _isClimb = false;
             }
         }
     }
