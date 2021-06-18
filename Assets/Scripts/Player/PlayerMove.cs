@@ -30,7 +30,7 @@ namespace Zenra
                 float addXSpeed = (_input.HoriMoveDir() * _speed);//実際に動かす
                 float addYSpeed = (_input.VertMoveDir() * _speed);
 
-                _rb2d.velocity = new Vector2(addXSpeed, addYSpeed);
+                _rb2d.velocity = new Vector2(addXSpeed, addYSpeed);     // 移動時に重力が考慮されない
             }
         }
     }

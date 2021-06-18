@@ -7,7 +7,7 @@ namespace Zenra
 {
     namespace Item
     {
-        public class NullEvents : IIsHideChange,IHpChange
+        public class NullEvents : IIsHideChange
         {
             public event Action HideChangeEvent;
             public event Action HpChangeEvent;
