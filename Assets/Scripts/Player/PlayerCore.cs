@@ -39,7 +39,7 @@ namespace Zenra
             }
            
             public bool IsRetentionItem() => _itemList.Count > 0;//アイテムを持っているかどうか
-
+            
             public ItemName GetItem()
             {
                 if (_itemList.Count < 1) return ItemName.NULL;

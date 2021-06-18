@@ -8,15 +8,27 @@ namespace Zenra
     {
         public class PlayerClimb : IObjectTouchable
         {
+            private IClimbable _climbable;
+
+            public PlayerClimb()
+            {
+                _climbable = MyUtility.Locator<IClimbable>.GetT();
+            }
+           
 
             public void EnterAction(GameObject touchObj)
             {
-                throw new System.NotImplementedException();
+                // ‚Æ‚è‚ ‚¦‚¸LadderCore
+                var a = touchObj.GetComponent<Gimmick.Ladder.LadderCore>();
+                if(a != null)
+                {
+                    _climbable.CanClimb();
+                }
             }
 
             public void ExitAction(GameObject touchObj)
             {
-                throw new System.NotImplementedException();
+
             }
 
 
