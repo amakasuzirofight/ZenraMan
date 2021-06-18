@@ -14,7 +14,13 @@ namespace Zenra
                 return false;
             }
 
-            public float SideMoveDir()
+            public float HoriMoveDir()
+            {
+                Debug.LogError("NullObject");
+                return 0.0f;
+            }
+
+            public float VertMoveDir()
             {
                 Debug.LogError("NullObject");
                 return 0.0f;

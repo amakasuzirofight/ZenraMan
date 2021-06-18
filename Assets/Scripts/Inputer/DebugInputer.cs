@@ -8,9 +8,14 @@ namespace Zenra
     {
         public class DebugInputer : IInputer
         { 
-            float IInputer.SideMoveDir()
+            float IInputer.HoriMoveDir()
             {
                 return Input.GetAxisRaw("Horizontal");
+            }
+
+            float IInputer.VertMoveDir()
+            {
+                return Input.GetAxisRaw("Vertical");
             }
 
             bool IInputer.IsItemButtonDown()

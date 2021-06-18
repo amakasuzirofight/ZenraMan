@@ -5,7 +5,8 @@ namespace Zenra
     {
         interface IInputer
         {
-            float SideMoveDir();
+            float HoriMoveDir();
+            float VertMoveDir();
             bool IsItemButtonDown();
         }
     }

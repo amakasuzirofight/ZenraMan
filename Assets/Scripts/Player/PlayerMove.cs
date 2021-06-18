@@ -22,13 +22,15 @@ namespace Zenra
 
             void Update()
             {
-
+                // 地上でグラビティが1.0、それ以外は0.0にするプログラムを書きたい
             }
 
             private void FixedUpdate()
             {
-                float addSpeed = (_input.SideMoveDir() * _speed - _rb2d.velocity.x);//実際に動かす
-                _rb2d.AddForce(addSpeed * Vector2.right, ForceMode2D.Force);//ForceMode Addforseの機能　impluseが一気に力を加える　Forceが少しずつ加えるこっちupdate向け
+                float addXSpeed = (_input.HoriMoveDir() * _speed);//実際に動かす
+                float addYSpeed = (_input.VertMoveDir() * _speed);
+
+                _rb2d.velocity = new Vector2(addXSpeed, addYSpeed);
             }
         }
     }
