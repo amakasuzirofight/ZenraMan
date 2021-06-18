@@ -8,10 +8,9 @@ namespace Zenra
     namespace Item
     {
         public class ItemSerector : IUseItem,
-            IIsHideChange, IHpChange
+            IIsHideChange
         {
             public event Action HideChangeEvent;
-            public event Action HpChangeEvent;
 
             void IUseItem.ItemAct(UseItemDS date)
             {
@@ -27,7 +26,6 @@ namespace Zenra
                     case ItemName.OBON:
                         return HideChangeEvent;
                     case ItemName.NIKUMAN:
-                        return HpChangeEvent;
                     default:
                         return null;
                 }

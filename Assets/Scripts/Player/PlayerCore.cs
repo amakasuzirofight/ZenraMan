@@ -17,7 +17,6 @@ namespace Zenra
             private bool _isHide;//かくれているかどうか
 
             private IIsHideChange isHideChange = new NullEvents();
-            private IHpChange hpChange = new NullEvents();
 
             public event Action<ItemName> ItemActivation;
             public PlayerCore()
@@ -26,10 +25,7 @@ namespace Zenra
                 _hp = 3;
                 _itemList = new List<ItemName>(ITEM_LIST_LENGH);
                 isHideChange = MyUtility.Locator<IIsHideChange>.GetT();//myUtilityとはnamespace名　こういう書き方もできる
-                hpChange = MyUtility.Locator<IHpChange>.GetT();//
-                hpChange = hpChange ?? new NullEvents();//hpChangeがnullだったらNullEventsが実行される
                 isHideChange.HideChangeEvent += HideStateChange;
-                hpChange.HpChangeEvent += SubHp;
                 //_ = Hoge();　破棄　_=にすると戻り値があってもVoidと同じ処理速度でやってくれるぽい
             }
            
