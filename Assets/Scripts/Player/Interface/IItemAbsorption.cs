@@ -4,7 +4,7 @@ namespace Zenra
 {
     namespace Player
     {
-        interface IItemAbsorption
+        public interface IItemAbsorption
         {
             ItemName GetItem();
         }
