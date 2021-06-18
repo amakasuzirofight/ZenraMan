@@ -7,7 +7,7 @@ namespace Zenra
 {
     namespace Player
     {
-        public class PlayerItemAbsorption
+        public class PlayerItemAbsorption: IObjectTouchable
         {
             static IItemAbsorption _dummy = new NullItemCore();
             IItemAbsorption _itemCore = _dummy;
@@ -15,20 +15,20 @@ namespace Zenra
 
             public PlayerItemAbsorption()
             {
-                Debug.Log("あああ");
                 _core = MyUtility.Locator<PlayerCore>.GetT();
             }
 
-            public void EnterAction(IItemAbsorption obj)
+            public void EnterAction(GameObject touchObj)
             {
-                _itemCore = obj;
+                _itemCore = touchObj.GetComponent<IItemAbsorption>();
                 var itemName = _itemCore?.GetItem();
                 if (itemName == null) return;
                 _core.AddItem((ItemName)itemName);
             }
-            public void ExitAction(IItemAbsorption obj)
-            { 
-                if (_itemCore != obj) return;
+
+            public void ExitAction(GameObject touchObj)
+            {
+                if (_itemCore != touchObj.GetComponent<IItemAbsorption>()) return;
                 _itemCore = _dummy;
             }
         }
