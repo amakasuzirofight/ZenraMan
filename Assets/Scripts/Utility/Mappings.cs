@@ -21,7 +21,10 @@ namespace MyUtility
             Locator<IInputer>.Bind(new DebugInputer());
             Locator<IUseItem>.Bind(itemSerector);
             Locator<IIsHideChange>.Bind(itemSerector);
+            Locator<IHpMaxHeal>.Bind(itemSerector);
+            Locator<IHpSmallHeal>.Bind(itemSerector);
             Locator<PlayerCore>.Bind(new PlayerCore());
+            
         }
     }
 }
