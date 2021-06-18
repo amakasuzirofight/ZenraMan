@@ -16,6 +16,7 @@ namespace Zenra
             const int ITEM_LIST_LENGH = 1;//アイテムはひとつしか持てない
             const int MAX_HP = 300;
             private bool _isHide;//かくれているかどうか
+            private bool _isClimb;      // はしごに登ってるかどうか
 
             private IIsHideChange isHideChange = new NullEvents();
             private IHpMaxHeal hpMaxHeal = new NullEvents();
