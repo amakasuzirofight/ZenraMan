@@ -2,15 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerObjectTouch : MonoBehaviour
+namespace Zenra
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    namespace Player
     {
-        
-    }
+        public class PlayerObjectTouch : MonoBehaviour
+        {
+            PlayerItemAbsorption absorption;
+            private void Start()
+            {
+                absorption = new PlayerItemAbsorption();
+            }
+            private void OnTriggerEnter2D(Collider2D collision)
+            {
+                var components = collision.gameObject.GetComponents<MonoBehaviour>();
+                foreach (var component in components)
+                {
+                    if (component is IItemAbsorption item)
+                    {
+                        absorption.EnterAction(item);
+                    }
+                }
+            }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        
+            private void OnTriggerExit2D(Collider2D collision)
+            {
+
+            }
+        }
     }
 }
+

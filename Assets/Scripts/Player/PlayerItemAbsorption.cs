@@ -10,25 +10,26 @@ namespace Zenra
         public class PlayerItemAbsorption
         {
             static IItemAbsorption _dummy = new NullItemCore();
-            IItemAbsorption _playerKill = _dummy;
+            IItemAbsorption _itemCore = _dummy;
             private PlayerCore _core;
 
-            private void Start()
+            public PlayerItemAbsorption()
             {
+                Debug.Log("あああ");
                 _core = MyUtility.Locator<PlayerCore>.GetT();
             }
 
             public void EnterAction(IItemAbsorption obj)
             {
-                _playerKill = obj;
-                var itemName = _playerKill?.GetItem();
+                _itemCore = obj;
+                var itemName = _itemCore?.GetItem();
                 if (itemName == null) return;
                 _core.AddItem((ItemName)itemName);
             }
             public void ExitAction(IItemAbsorption obj)
             { 
-                if (_playerKill != obj) return;
-                _playerKill = _dummy;
+                if (_itemCore != obj) return;
+                _itemCore = _dummy;
             }
         }
     }
