@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class PoliMove : MonoBehaviour
 {
+    PoliMove()
+    {
+        Debug.Log("new");
+    }
+
     Rigidbody2D _rb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +30,13 @@ public class PoliMove : MonoBehaviour
     {
         _rb.velocity = new Vector2(speed, _rb.velocity.y);
     }
+    public void StopMove()
+    {
+        _rb.velocity = default;
+    }
     public void Turn()
     {
-
+        //アニメーションはさんだ後に呼ばれる
+        transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
     }
 }
