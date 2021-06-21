@@ -1,0 +1,111 @@
+@startuml ZenraMan
+package Player{
+
+    interface IClimbable{
+
+    }
+    interface IItemAbsorption{
+
+    }
+    interface IObjectTouchable{
+
+    }
+    class PlayerClimb{
+
+    }
+    class PlayerCore{
+
+    }
+    class PlayerDead<<MonoBehaviour>>{
+
+    }
+    class PlayerGimmickActivate{
+
+    }
+    class PlayerItemAbsorption{
+
+    }
+    class PlayerMove<<MonoBehaviour>>{
+
+    }
+    class PlayerObjectTouch<<MonoBehaviour>>{
+
+    }
+    class PlayerUseItem<<MonoBehaviour>>{
+
+    }
+}
+package Inputer{
+    interface IInputer {
+
+    }
+    class DebugInputer{
+
+    }
+}
+package KillLight{
+    interface IPlayerLKill{
+
+    }
+    class FlashLight<<MonoBehaviour>>{
+
+    }
+}
+package Item{
+    interface IUseItem{
+
+    }
+    class ItemInfo<<ScriptableObject>>{
+
+    }
+    interface IHpMaxHeal{
+
+    }
+    interface IHpSmallHeal{
+
+    }
+    interface IIsHideChange{
+
+    }
+    class ItemCore<<MonoBehaviour>>{
+
+    }
+    class ItemSerector{
+
+    } 
+    class UseItemDS<<Struct>>{
+
+    }
+    enum ItemName{}
+}
+
+PlayerCore .right.|> IClimbable
+PlayerCore -down-> IHpMaxHeal : DB(Locator)
+PlayerCore -right-> IHpSmallHeal : DB(Locator)
+PlayerCore -up-> IIsHideChange : DB(Locator) 
+PlayerClimb .down.|> IObjectTouchable
+PlayerClimb -up-> IClimbable : DB(LOcator)
+PlayerDead .up.|> IPlayerLKill
+PlayerDead -down-> PlayerCore : DB(Locator)
+PlayerGimmickActivate .down.|> IObjectTouchable
+PlayerItemAbsorption .down.|> IObjectTouchable
+PlayerItemAbsorption -up-> IItemAbsorption : GetComponent<>
+PlayerItemAbsorption -down-> PlayerCore : DB(Locator)
+PlayerMove -left-> IInputer : DB(Locator)
+PlayerMove -up-> Rigidbody2D : GetComponent<>
+PlayerObjectTouch -right-> IObjectTouchable : DB(Locator)
+PlayerUseItem -down-> PlayerCore : DB(Locator)
+PlayerUseItem -up-> IInputer : DB(Locator)
+PlayerUseItem -left-> IUseItem : DB(Lcator)
+FlashLight -down-> IPlayerLKill : GetComponent<>
+ItemCore ..|> IItemAbsorption
+ItemCore --* ItemInfo
+ItemCore -up-> SpriteRendrer : GetComponent<>
+ItemSerector .up.|> IUseItem
+ItemSerector .up.|> IIsHideChange
+ItemSerector .left.|> IHpSmallHeal
+ItemSerector .down.|> IHpMaxHeal
+DebugInputer .down.|> IInputer
+UseItemDS --> ItemName
+IUseItem --> UseItemDS
+@enduml

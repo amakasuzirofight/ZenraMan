@@ -7,29 +7,29 @@ namespace Zenra
 {
     namespace Player
     {
-        public class PlayerItemAbsorption : MonoBehaviour
+        public class PlayerItemAbsorption: IObjectTouchable
         {
             static IItemAbsorption _dummy = new NullItemCore();
-            IItemAbsorption _playerKill = _dummy;
+            IItemAbsorption _itemCore = _dummy;
             private PlayerCore _core;
 
-            private void Start()
+            public PlayerItemAbsorption()
             {
                 _core = MyUtility.Locator<PlayerCore>.GetT();
             }
 
-            private void OnTriggerEnter2D(Collider2D collision)
+            public void EnterAction(GameObject touchObj)
             {
-                _playerKill = collision.gameObject.GetComponent<IItemAbsorption>();
-                var itemName = _playerKill?.GetItem();
+                _itemCore = touchObj.GetComponent<IItemAbsorption>();
+                var itemName = _itemCore?.GetItem();
                 if (itemName == null) return;
                 _core.AddItem((ItemName)itemName);
             }
-            private void OnTriggerExit2D(Collider2D collision)
+
+            public void ExitAction(GameObject touchObj)
             {
-                var tempPlayerKill = collision.gameObject.GetComponent<IItemAbsorption>();
-                if (_playerKill != tempPlayerKill) return;
-                _playerKill = _dummy;
+                if (_itemCore != touchObj.GetComponent<IItemAbsorption>()) return;
+                _itemCore = _dummy;
             }
         }
     }

@@ -14,6 +14,8 @@ namespace Zenra
             private IInputer _input = new NullInputer();//iinputerを作成　何も値入ってない
             private Rigidbody2D _rb2d = null;//ADDforce用RB
 
+            
+
             void Start()
             {
                 _rb2d = GetComponent<Rigidbody2D>();
@@ -22,7 +24,7 @@ namespace Zenra
 
             void Update()
             {
-                // 地上でグラビティが1.0、それ以外は0.0にするプログラムを書きたい
+                
             }
 
             private void FixedUpdate()
@@ -32,6 +34,8 @@ namespace Zenra
 
                 _rb2d.velocity = new Vector2(addXSpeed, addYSpeed);     // 移動時に重力が考慮されない
             }
+
+            
         }
     }
 }
