@@ -41,3 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Sky
+    uniqueID: 59835209
+    locked: 0
+  - name: Back
+    uniqueID: 1553897833
+    locked: 0
+  - name: Ground
+    uniqueID: 66281837
+    locked: 0
+  - name: Cordinate
+    uniqueID: 514471301
+    locked: 0
+  - name: Character
+    uniqueID: 501597893
+    locked: 0
+  - name: AboveCharacter
+    uniqueID: 1105504113
+    locked: 0
