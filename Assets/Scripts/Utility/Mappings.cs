@@ -18,15 +18,18 @@ namespace MyUtility
         private static void GameSceneMap()
         {
             ItemSerector itemSerector = new ItemSerector();
+            
             Locator<IInputer>.Bind(new DebugInputer());
             Locator<IUseItem>.Bind(itemSerector);
             Locator<IIsHideChange>.Bind(itemSerector);
             Locator<IHpMaxHeal>.Bind(itemSerector);
             Locator<IHpSmallHeal>.Bind(itemSerector);
-            Locator<PlayerCore>.Bind(new PlayerCore());
+            PlayerCore playerCore = new PlayerCore();
+            Locator<PlayerCore>.Bind(playerCore);
             Locator<IObjectTouchable>.Bind(new PlayerItemAbsorption(),0);
             //Locator<IObjectTouchable>.Bind(new PlayerItemAbsorption(),1);
             //Locator<IObjectTouchable>.Bind(ここにギミック,2);
+            Locator<IItemUsable>.Bind(playerCore);
         }
     }
 }

@@ -9,13 +9,14 @@ namespace Zenra
 {
     namespace Player
     {
-        public class PlayerCore : IClimbable
+        public class PlayerCore : IClimbable, IItemUsable
         {
             private int _hp;//_で変数名を決めておけば_で予測変換が使いやすい　privateで使用されたし
             private List<ItemName> _itemList;
             const int ITEM_LIST_LENGH = 1;//アイテムはひとつしか持てない
             const int MAX_HP = 300;
             private bool _isHide;//かくれているかどうか
+            private bool _isUseItem;// アイテムを使用しているかどうか(隠れるのみならば_isHideと同義)
             private bool _isClimb;      // はしごに登ってるかどうか
 
             private IIsHideChange _isHideChange = new NullEvents();
@@ -26,6 +27,7 @@ namespace Zenra
             public PlayerCore()
             {
                 _isHide = false;
+                _isUseItem = false;
                 _isClimb = false;
                 _hp = MAX_HP;
                 _itemList = new List<ItemName>(ITEM_LIST_LENGH);
@@ -65,7 +67,7 @@ namespace Zenra
                 _itemList.Add(name);
             }
 
-            public bool IsActivate(ItemName name)
+            private bool IsActivate(ItemName name)
             {
                 if (name == ItemName.KARAGE) return true;
                 if (name == ItemName.NIKUMAN) return true;
@@ -81,7 +83,8 @@ namespace Zenra
             private void HideStateChange()
             {
                 Debug.Log("隠れる");
-                _isHide = false; 
+                _isHide = true;
+                _isUseItem = true;
             }
 
             private void HpHealMax()
@@ -105,6 +108,19 @@ namespace Zenra
             void IClimbable.CannotClimb()
             {
                 _isClimb = false;
+            }
+
+            void IItemUsable.FinishUseItem()
+            {
+                Debug.Log("使い終わる");
+                _isUseItem = false;
+                // ここに逐次追加する
+                _isHide = false;
+            }
+
+            bool IItemUsable.GetIsUseItem()
+            {
+                return _isUseItem;
             }
         }
     }

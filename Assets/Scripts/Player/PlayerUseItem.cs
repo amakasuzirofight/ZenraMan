@@ -10,6 +10,7 @@ namespace Zenra
     {
         public class PlayerUseItem : MonoBehaviour
         {
+            private IItemUsable _itemUsable = new NullItemUsable();
             private PlayerCore _core = null;
             private IInputer _input = new NullInputer();
             private IUseItem _useItem = new NullUseItem();
@@ -18,14 +19,23 @@ namespace Zenra
                 _input = MyUtility.Locator<IInputer>.GetT();
                 _core = MyUtility.Locator<PlayerCore>.GetT();
                 _useItem = MyUtility.Locator<IUseItem>.GetT();
+                _itemUsable = MyUtility.Locator<IItemUsable>.GetT();
                 _core.ItemActivation += GetItemToAction;
             }
 
             void Update()
             {
-                if (_input.IsItemButtonDown() && _core.IsRetentionItem())
+                if (_input.IsItemButtonDown())
                 {
-                    UseItemToAction();
+                    if (_itemUsable.GetIsUseItem())
+                    {
+                        _itemUsable.FinishUseItem();
+                    }
+                    bool isUseItem = !_itemUsable.GetIsUseItem() && _core.IsRetentionItem();
+                    if (isUseItem)
+                    {
+                        UseItemToAction();
+                    }
                 }
             }
 
