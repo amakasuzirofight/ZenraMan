@@ -4,7 +4,8 @@ namespace Zenra
     {
         interface IGimmickAction
         {
-            void HideAction();
+            GimmickType[] GimmickTypes { get; }
+            void GimmickAction();
         }
     }
 }

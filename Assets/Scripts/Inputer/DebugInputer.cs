@@ -22,6 +22,16 @@ namespace Zenra
             {
                 return Input.GetKeyDown(KeyCode.Space);
             }
+
+            bool IInputer.IsGimmickActivateButtonDown()
+            {
+                return Input.GetKeyDown(KeyCode.Alpha1);
+            }
+
+            bool IInputer.IsLadderClimbButtonDown()
+            {
+                return Input.GetKeyDown(KeyCode.Alpha2);
+            }
         }
     }
 }

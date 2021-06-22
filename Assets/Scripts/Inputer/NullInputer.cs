@@ -25,6 +25,18 @@ namespace Zenra
                 Debug.LogError("NullObject");
                 return 0.0f;
             }
+
+            public bool IsGimmickActivateButtonDown()
+            {
+                Debug.LogError("NullObject");
+                return false;
+            }
+
+            public bool IsLadderClimbButtonDown()
+            {
+                Debug.LogError("NullObject");
+                return false;
+            }
         }
     }
 }

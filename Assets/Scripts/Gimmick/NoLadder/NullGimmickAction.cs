@@ -8,7 +8,16 @@ namespace Zenra
     {
         public class NullGimmickAction : IGimmickAction
         {
-            public void HideAction()
+            public GimmickType[] GimmickTypes
+            {
+                get
+                {
+                    Debug.Log("NulObject");
+                    return new GimmickType[] { GimmickType.NULL };
+                }
+            }
+
+            public void GimmickAction()
             {
                 Debug.LogError("NullObject");
             }

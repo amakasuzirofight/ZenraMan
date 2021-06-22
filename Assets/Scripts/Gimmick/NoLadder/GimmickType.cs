@@ -4,9 +4,11 @@ namespace Zenra
     {
         public enum GimmickType
         {
-            HIDE,
+            NULL = -999,
+            HIDE = 0,
             SAVE,
-            HEAL
+            HEAL,
+            
         }
     }
 }

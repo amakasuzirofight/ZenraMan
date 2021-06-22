@@ -8,6 +8,8 @@ namespace Zenra
             float HoriMoveDir();
             float VertMoveDir();
             bool IsItemButtonDown();
+            bool IsGimmickActivateButtonDown();
+            bool IsLadderClimbButtonDown();
         }
     }
 }
