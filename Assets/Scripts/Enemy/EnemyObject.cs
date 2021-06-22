@@ -16,9 +16,10 @@ namespace Zenra
             float timecount;
             EnemyState enemyState;
 
+            Rigidbody2D rb;
             void Start()
             {
-
+                rb = GetComponent<Rigidbody2D>();
             }
 
             void Update()
@@ -33,22 +34,48 @@ namespace Zenra
             {
                 MoveBase();
             }
-            bool isrun;
+            bool canrun = true;
+            bool RandomLaunge = true;
+            float rand;
             void MoveBase()
             {
-                if (isrun)
+                //Å‰‚ÉˆÚ“®ŠÔ‚ğŒˆ‚ß‚é
+                if (RandomLaunge == true)
                 {
-                    timecount += Time.deltaTime;
+                    rand = moveLenghTime + Random.Range(-0.1f, 0);
+                    RandomLaunge = false;
                 }
-                float rand = moveLenghTime + Random.Range(-0.5f, 0);
-                //poliMove.Move(speed);//ˆÚ“®•û–@‚í‚©‚ç‚ñ
-                StartCoroutine(PoliStop(enemyState, moveLenghTime));
+                if (canrun)
+                {
+                    //ˆÚ“®’†‚ÉŠÔ‚ğ}‚é
+                    timecount += Time.deltaTime;
+                    //ˆÚ“®‚·‚é
+                    rb.velocity = new Vector2(speed, rb.velocity.y);
+                    Debug.Log("ˆÚ“®’†");
+                    if (rand < timecount)
+                    {
+                        canrun = false;
+                        Debug.Log("”½“]");
+                        StartCoroutine("Turn");
+                       
+                    }
+                }
+                else
+                {
+                    rb.velocity = Vector2.zero;
+                }
 
             }
-            public void MoveRial()
+            IEnumerator Turn()
             {
-
+                yield return new WaitForSeconds(0.5f);
+                transform.localScale *= new Vector2(-1, 1);
+                speed *= -1;
+                canrun = true;
+                timecount = 0;
+                RandomLaunge = true;
             }
+
             public void ChangeState(EnemyState enemystate)
             {
                 switch (enemystate)

@@ -6,7 +6,7 @@ public class PoliMove : MonoBehaviour
 {
     PoliMove()
     {
-        Debug.Log("new");
+
     }
 
     Rigidbody2D _rb;
