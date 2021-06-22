@@ -30,7 +30,7 @@ public class RPGMakerToRuleTile_ver2 : EditorWindow
     public int animCount { get { return _animCount; } set { _animCount = value; } }
     public int animSpeed { get { return _animSpeed; } set { _animSpeed = value; } }
     public Sprite slicedSprite { get { return _slicedSprite; } set { _slicedSprite = value; } }
-    public RuleTile.TilingRule.OutputSprite output { get { return _output; } set { _output = value; } }
+    public RuleTile.TilingRuleOutput.OutputSprite output { get { return _output; } set { _output = value; } }
 
     private string path = "";
 
