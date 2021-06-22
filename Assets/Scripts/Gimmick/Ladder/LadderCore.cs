@@ -8,11 +8,25 @@ namespace Zenra
     {
         namespace Ladder
         {
-            public class LadderCore : MonoBehaviour
+            public class LadderCore : MonoBehaviour, ISendLadderPos
             {
-                // Core必要なのかわからないよ（加藤）
-            }
+                private Vector2 _ladderPos;
 
+                private void Start()
+                {
+                    _ladderPos = gameObject.transform.position;
+                }
+
+                public float SendLadderPosX()
+                {
+                    return _ladderPos.x;
+                }
+
+                public float SendLadderPosY()
+                {
+                    return _ladderPos.y;
+                }
+            }
         }
     }
 }
