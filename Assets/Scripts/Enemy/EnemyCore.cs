@@ -8,7 +8,7 @@ namespace Zenra
     {
         public enum EnemyState
         {
-            STAY,WEPONCHANGE,SHOT,MOVE
+            STAY,WEPONCHANGE,SHOT,MOVE,TURN
         }
         public class EnemyCore 
         {

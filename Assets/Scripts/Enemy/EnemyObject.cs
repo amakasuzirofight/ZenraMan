@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using Zenra.KillLight;
 namespace Zenra
 {
     namespace Police
@@ -8,18 +10,33 @@ namespace Zenra
         public class EnemyObject : MonoBehaviour
         {
             [SerializeField]
-            PoliMove poliMove;
+            ILightHit lightHit;
             [SerializeField, Range(0, 10)]
             float moveLenghTime;
+            [ContextMenuItem("Reset", "ResetSpeed")]
             [SerializeField]
             float speed;
             float timecount;
-            EnemyState enemyState;
-
+            EnemyState enemyState=EnemyState.MOVE;
             Rigidbody2D rb;
+            bool InShotLenge=false;//éÀíˆì‡Ç…ÉvÉåÉCÉÑÅ[Ç™Ç¢ÇÈÇ©Ç«Ç§Ç©
             void Start()
             {
                 rb = GetComponent<Rigidbody2D>();
+                lightHit = GetComponent<ILightHit>();
+                lightHit.LightHitEvent += LightHit_LightHitEvent;
+                lightHit.LightExitEvent += LightHit_LightExitEvent;
+            }
+
+            private void LightHit_LightHitEvent()
+            {
+                enemyState = EnemyState.WEPONCHANGE;
+                InShotLenge = true;
+            }
+
+            private void LightHit_LightExitEvent()
+            {
+                InShotLenge = false;
             }
 
             void Update()
@@ -32,9 +49,11 @@ namespace Zenra
             }
             private void FixedUpdate()
             {
-                MoveBase();
+                ActJudge(enemyState);
+                
             }
             bool canrun = true;
+            bool turnflg = false;
             bool RandomLaunge = true;
             float rand;
             void MoveBase()
@@ -42,6 +61,7 @@ namespace Zenra
                 //ç≈èâÇ…à⁄ìÆéûä‘ÇåàÇﬂÇÈ
                 if (RandomLaunge == true)
                 {
+                   
                     rand = moveLenghTime + Random.Range(-0.1f, 0);
                     RandomLaunge = false;
                 }
@@ -51,32 +71,38 @@ namespace Zenra
                     timecount += Time.deltaTime;
                     //à⁄ìÆÇ∑ÇÈ
                     rb.velocity = new Vector2(speed, rb.velocity.y);
-                    Debug.Log("à⁄ìÆíÜ");
-                    if (rand < timecount)
-                    {
-                        canrun = false;
-                        Debug.Log("îΩì]");
-                        StartCoroutine("Turn");
-                       
-                    }
+
                 }
                 else
                 {
                     rb.velocity = Vector2.zero;
+                }
+                if (rand < timecount)
+                {
+                    timecount = 0;
+                    canrun = false;
+                    StartCoroutine("Turn");
+
                 }
 
             }
             IEnumerator Turn()
             {
                 yield return new WaitForSeconds(0.5f);
-                transform.localScale *= new Vector2(-1, 1);
-                speed *= -1;
-                canrun = true;
-                timecount = 0;
-                RandomLaunge = true;
+                if (enemyState == EnemyState.MOVE)
+                {
+                    transform.localScale *= new Vector2(-1, 1);
+                    speed *= -1;
+                    canrun = true;
+                    timecount = 0;
+                    RandomLaunge = true;
+                }
             }
+            public void LightHitCheck()
+            {
 
-            public void ChangeState(EnemyState enemystate)
+            }
+            public void ActJudge(EnemyState enemystate)
             {
                 switch (enemystate)
                 {
@@ -87,7 +113,9 @@ namespace Zenra
                     case EnemyState.SHOT:
                         break;
                     case EnemyState.MOVE:
+                        MoveBase();
                         break;
+                  
                     default:
                         break;
                 }
@@ -100,6 +128,10 @@ namespace Zenra
             IEnumerator PoliStop(EnemyState enemyState, float waitTime)
             {
                 yield return new WaitForSeconds(waitTime);
+            }
+            void ResetSpeed()
+            {
+                speed = 0;
             }
 
         }
