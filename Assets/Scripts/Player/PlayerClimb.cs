@@ -16,6 +16,7 @@ namespace Zenra
             public PlayerClimb()
             {
                 _climbable = MyUtility.Locator<IClimbable>.GetT();
+                Debug.Log(_climbable);
                 _sendLadderPos = null;
             }
 

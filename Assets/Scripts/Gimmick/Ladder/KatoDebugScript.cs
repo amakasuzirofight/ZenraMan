@@ -9,9 +9,11 @@ namespace Zenra
         
         private void Awake()
         {
-            Player.PlayerClimb pc = new Player.PlayerClimb();
-            MyUtility.Locator<Player.IObjectTouchable>.Bind(pc, 2);
-            MyUtility.Locator<Player.IObjectExecutable>.Bind(pc, 1);
+            // mappingÇ…èëÇ¢ÇΩÇ©ÇÁïKóvÇ»Ç≠Ç»Ç¡ÇΩ
+            // Player.PlayerClimb pc = new Player.PlayerClimb();
+            // MyUtility.Locator<Player.IObjectTouchable>.Bind(pc, 2);
+            // MyUtility.Locator<Player.IObjectExecutable>.Bind(pc, 1);
+           
         }
 
         void Start()

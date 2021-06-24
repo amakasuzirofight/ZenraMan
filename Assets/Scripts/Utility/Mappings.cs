@@ -19,6 +19,7 @@ namespace MyUtility
         {
             ItemSerector itemSerector = new ItemSerector();
             PlayerGimmickActivate playerGimmickActivate = new PlayerGimmickActivate();
+            
 
             Locator<IInputer>.Bind(new DebugInputer());
             Locator<IUseItem>.Bind(itemSerector);
@@ -27,14 +28,18 @@ namespace MyUtility
             Locator<IHpSmallHeal>.Bind(itemSerector);
 
             PlayerCore playerCore = new PlayerCore();
+            
 
             Locator<PlayerCore>.Bind(playerCore);
             Locator<IObjectTouchable>.Bind(new PlayerItemAbsorption(),0);
             Locator<IObjectTouchable>.Bind(playerGimmickActivate, 1);
-            //Locator<IObjectTouchable>.Bind(ここはしご,2);
+            Locator<IClimbable>.Bind(playerCore);
+            PlayerClimb playerClimb = new PlayerClimb();
+            Locator<IObjectTouchable>.Bind(playerClimb, 2);
             Locator<IItemUsable>.Bind(playerCore);
+            
             Locator<IObjectExecutable>.Bind(playerGimmickActivate, 0);
-            //Locator<IObjectExecutable>.Bind(ここはしご, 1);
+            Locator<IObjectExecutable>.Bind(playerClimb, 1);
         }
     }
 }
