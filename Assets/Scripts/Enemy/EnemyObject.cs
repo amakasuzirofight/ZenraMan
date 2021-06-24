@@ -9,7 +9,7 @@ namespace Zenra
     {
         public class EnemyObject : MonoBehaviour
         {
-            [SerializeField]
+            [SerializeField] GameObject lightHitObj;
             ILightHit lightHit;
             [SerializeField, Range(0, 10)]
             float moveLenghTime;
@@ -17,13 +17,13 @@ namespace Zenra
             [SerializeField]
             float speed;
             float timecount;
-            EnemyState enemyState=EnemyState.MOVE;
+            EnemyState enemyState = EnemyState.MOVE;
             Rigidbody2D rb;
-            bool InShotLenge=false;//射程内にプレイヤーがいるかどうか
+            bool InShotLenge = false;//射程内にプレイヤーがいるかどうか
             void Start()
             {
                 rb = GetComponent<Rigidbody2D>();
-                lightHit = GetComponent<ILightHit>();
+                lightHit = lightHitObj.GetComponent<ILightHit>();
                 lightHit.LightHitEvent += LightHit_LightHitEvent;
                 lightHit.LightExitEvent += LightHit_LightExitEvent;
             }
@@ -32,11 +32,14 @@ namespace Zenra
             {
                 enemyState = EnemyState.WEPONCHANGE;
                 InShotLenge = true;
+                StartCoroutine(ChangeGun());
+                Debug.Log("いた！");
             }
 
             private void LightHit_LightExitEvent()
             {
                 InShotLenge = false;
+
             }
 
             void Update()
@@ -44,24 +47,43 @@ namespace Zenra
                 //最初にどれくらい移動するかを決めて移動する。移動の途中でランダムで止まる。
                 //持ち替えている間に隠れて居なければ撃つ
                 //とりあえず移動と反転だけ行う
-
-
             }
             private void FixedUpdate()
             {
                 ActJudge(enemyState);
-                
             }
+            public void ActJudge(EnemyState enemystate)
+            {
+                switch (enemystate)
+                {
+                    case EnemyState.STAY:
+                        break;
+                    case EnemyState.WEPONCHANGE:
+                        //アニメーション
+                        break;
+                    case EnemyState.SHOT:
+                        Debug.Log("ばっきゅん");
+                        break;
+                    case EnemyState.MOVE:
+                        MoveBase();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
             bool canrun = true;
             bool turnflg = false;
             bool RandomLaunge = true;
             float rand;
             void MoveBase()
             {
+                canrun = enemyState == EnemyState.MOVE;
+                lightHitObj.SetActive(true);
                 //最初に移動時間を決める
                 if (RandomLaunge == true)
                 {
-                   
                     rand = moveLenghTime + Random.Range(-0.1f, 0);
                     RandomLaunge = false;
                 }
@@ -98,28 +120,20 @@ namespace Zenra
                     RandomLaunge = true;
                 }
             }
-            public void LightHitCheck()
+            IEnumerator ChangeGun()
             {
-
-            }
-            public void ActJudge(EnemyState enemystate)
-            {
-                switch (enemystate)
+                yield return new WaitForSeconds(0.5f);
+                if (InShotLenge == true)
                 {
-                    case EnemyState.STAY:
-                        break;
-                    case EnemyState.WEPONCHANGE:
-                        break;
-                    case EnemyState.SHOT:
-                        break;
-                    case EnemyState.MOVE:
-                        MoveBase();
-                        break;
-                  
-                    default:
-                        break;
+                    enemyState = EnemyState.SHOT;
+                }
+                else
+                {
+                    enemyState = EnemyState.MOVE;
                 }
             }
+
+
             IEnumerator MoveStop(EnemyState enemyState, float waitTime)
             {
                 yield return new WaitForSeconds(waitTime);

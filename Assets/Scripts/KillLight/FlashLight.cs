@@ -1,20 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using MyUtility;
 namespace Zenra
 {
     namespace KillLight
     {
         public class FlashLight : MonoBehaviour, ILightHit
-
         {
             static IPlayerKill _dummy = new NullObjectDead();
             IPlayerKill _playerKill = _dummy;
 
             public event LightHitdelegate LightHitEvent;
             public event LightExitdelegate LightExitEvent;
-
+            
             private void OnTriggerEnter2D(Collider2D collision)
             {
                 _playerKill = collision.gameObject.GetComponent<IPlayerKill>();
