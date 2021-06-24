@@ -16,7 +16,6 @@ namespace Zenra
             public PlayerClimb()
             {
                 _climbable = MyUtility.Locator<IClimbable>.GetT();
-                Debug.Log(_climbable);
                 _sendLadderPos = null;
             }
 
@@ -33,14 +32,21 @@ namespace Zenra
 
             public void ExitAction(GameObject touchObj)
             {
-                
+                if(_sendLadderPos != touchObj.GetComponent<ISendLadderPos>())
+                {
+                    return;
+                }
+
+                _sendLadderPos = null;
+                _climbable.CannotClimb();
             }
 
             public void Execute()
             {
-
-                Debug.Log("2ボタン押された");
-
+                if(_sendLadderPos != null)
+                {
+                    Debug.Log("2ボタン押された");
+                }
             }
         }
 

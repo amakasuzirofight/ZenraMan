@@ -13,7 +13,6 @@ namespace Zenra
             // Player.PlayerClimb pc = new Player.PlayerClimb();
             // MyUtility.Locator<Player.IObjectTouchable>.Bind(pc, 2);
             // MyUtility.Locator<Player.IObjectExecutable>.Bind(pc, 1);
-           
         }
 
         void Start()
