@@ -5,7 +5,6 @@ namespace Zenra
         interface IItemUsable
         {
             void FinishUseItem();
-            bool GetIsUseItem();
         }
     }
 }

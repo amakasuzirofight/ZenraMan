@@ -27,11 +27,11 @@ namespace Zenra
             {
                 if (_input.IsItemButtonDown())
                 {
-                    if (_itemUsable.GetIsUseItem())
+                    if (_core.GetIsUseItem())
                     {
                         _itemUsable.FinishUseItem();
                     }
-                    bool isUseItem = !_itemUsable.GetIsUseItem() && _core.IsRetentionItem();
+                    bool isUseItem = !_core.GetIsUseItem() && _core.IsRetentionItem();
                     if (isUseItem)
                     {
                         UseItemToAction();
