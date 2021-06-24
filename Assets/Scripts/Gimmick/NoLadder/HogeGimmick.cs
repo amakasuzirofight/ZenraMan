@@ -8,11 +8,15 @@ namespace Zenra
     {
         public class HogeGimmick : MonoBehaviour,IGimmickAction
         {
-            public GimmickType[] GimmickTypes => new Gimmick.GimmickType[] { GimmickType.HIDE };
+            public GimmickType[] GimmickTypes => new Gimmick.GimmickType[] 
+            {
+                GimmickType.HIDE,
+                GimmickType.SAVE,
+            };
 
             public void GimmickAction()
             {
-                Debug.Log("ギミック発動された");
+                //Debug.Log("ギミック発動された");
             }
         }
     }

@@ -17,6 +17,7 @@ namespace Zenra
             const int MAX_HP = 300;
             private bool _isHide; //かくれているかどうか
             private bool _isUseItem; // アイテムを使用しているかどうか(隠れるのみならば_isHideと同義)
+            private bool _isUseGimmick;
             private bool _isClimb; // はしごに登ってるかどうか
 
             private IIsHideChange _isHideChange = new NullEvents();
@@ -28,6 +29,7 @@ namespace Zenra
             {
                 _isHide = false;
                 _isUseItem = false;
+                _isUseGimmick = false;
                 _isClimb = false;
                 _hp = MAX_HP;
                 _itemList = new List<ItemName>(ITEM_LIST_LENGH);
@@ -118,9 +120,14 @@ namespace Zenra
                 _isHide = false;
             }
 
-            bool IItemUsable.GetIsUseItem()
+            public bool GetIsUseItem()
             {
                 return _isUseItem;
+            }
+
+            public bool GetIsUseGimmick()
+            {
+                return _isUseGimmick;
             }
         }
     }

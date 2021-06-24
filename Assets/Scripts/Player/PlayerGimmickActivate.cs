@@ -14,23 +14,40 @@ namespace Zenra
             public void EnterAction(GameObject touchObj)
             {
                 gimmickAction = touchObj.GetComponent<IGimmickAction>();
-                Debug.Log("入った");
             }
             
             public void ExitAction(GameObject touchObj)
             {
-                Debug.Log("出た");
                 if (gimmickAction != touchObj.GetComponent<IGimmickAction>()) return;
                 gimmickAction = nullObject;
             }
 
             public void Execute()
             {
-                Debug.Log("ボタン押された");
                 if (gimmickAction == nullObject) return;
-                Debug.Log(gimmickAction.GimmickTypes[0]);
+                var GimmickTypeList = gimmickAction.GimmickTypes;
                 gimmickAction?.GimmickAction();
                 // ここにボタンが押された時の処理
+                foreach (var item in GimmickTypeList)
+                {
+                    switch (item)
+                    {
+                        case GimmickType.NULL:
+                            Debug.Log("Null");
+                            break;
+                        case GimmickType.HIDE:
+                            Debug.Log("Hide");
+                            break;
+                        case GimmickType.SAVE:
+                            Debug.Log("Save");
+                            break;
+                        case GimmickType.HEAL:
+                            Debug.Log("Heal");
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
         }
     }
