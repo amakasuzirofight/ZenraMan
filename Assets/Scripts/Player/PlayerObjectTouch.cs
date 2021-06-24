@@ -25,6 +25,7 @@ namespace Zenra
             {
                 _touchables.Add(MyUtility.Locator<IObjectTouchable>.GetT(0));
                 _touchables.Add(MyUtility.Locator<IObjectTouchable>.GetT(1));
+                _touchables.Add(MyUtility.Locator<IObjectTouchable>.GetT(2));
                 _inputer = MyUtility.Locator<IInputer>.GetT();
                 _gimmickExecutable = MyUtility.Locator<IObjectExecutable>.GetT((int)GIMMICK);
                 _ladderExecutable = MyUtility.Locator<IObjectExecutable>.GetT((int)LADDER);
