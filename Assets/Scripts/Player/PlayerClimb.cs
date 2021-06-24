@@ -7,28 +7,38 @@ namespace Zenra
 {
     namespace Player
     {
-        public class PlayerClimb : IObjectTouchable
+        public class PlayerClimb : IObjectTouchable, IObjectExecutable
         {
             private IClimbable _climbable;
+            private ISendLadderPos _sendLadderPos;
             private Vector2 _ladderPos;
 
             public PlayerClimb()
             {
                 _climbable = MyUtility.Locator<IClimbable>.GetT();
+                _sendLadderPos = null;
             }
 
             public void EnterAction(GameObject touchObj)
             {
-                var a = touchObj.GetComponent<ISendLadderPos>();
-                if(a != null)
+                _sendLadderPos = touchObj.GetComponent<ISendLadderPos>();
+                if (_sendLadderPos != null)
                 {
+                    Debug.Log("CanClimbêÿÇËë÷Ç¶");
                     _climbable.CanClimb();
-                    _ladderPos = new Vector2(a.SendLadderPosX(), a.SendLadderPosY());
+                    _ladderPos = new Vector2(_sendLadderPos.SendLadderPosX(), _sendLadderPos.SendLadderPosY());
                 }
             }
 
             public void ExitAction(GameObject touchObj)
             {
+                
+            }
+
+            public void Execute()
+            {
+
+                Debug.Log("2É{É^ÉìâüÇ≥ÇÍÇΩ");
 
             }
         }
