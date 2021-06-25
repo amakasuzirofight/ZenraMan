@@ -10,12 +10,16 @@ namespace Zenra
         public class PlayerClimb : IObjectTouchable, IObjectExecutable
         {
             private IClimbable _climbable;
+            private IActionClimb _actionClimb;
+
             private ISendLadderPos _sendLadderPos;
             private Vector2 _ladderPos;
+            
 
             public PlayerClimb()
             {
                 _climbable = MyUtility.Locator<IClimbable>.GetT();
+                
                 _sendLadderPos = null;
             }
 
@@ -24,7 +28,6 @@ namespace Zenra
                 _sendLadderPos = touchObj.GetComponent<ISendLadderPos>();
                 if (_sendLadderPos != null)
                 {
-                    Debug.Log("CanClimb�؂�ւ�");
                     _climbable.CanClimb();
                     _ladderPos = new Vector2(_sendLadderPos.SendLadderPosX(), _sendLadderPos.SendLadderPosY());
                 }
@@ -39,16 +42,25 @@ namespace Zenra
 
                 _sendLadderPos = null;
                 _climbable.CannotClimb();
+                _actionClimb = MyUtility.Locator<IActionClimb>.GetT();
+                _actionClimb.actionClimb(false);
             }
 
             public void Execute()
             {
                 if(_sendLadderPos != null)
                 {
-                    Debug.Log("2�{�^�������ꂽ");
+                    Debug.Log("2ボタン押された");
+                    // ここわからん。2ボタン押されたら毎回GetTしちゃうよ
+                    _actionClimb = MyUtility.Locator<IActionClimb>.GetT();
+                    _actionClimb.shiftPlayerPos(_ladderPos.x);
+                    _actionClimb.actionClimb(true);
+                }
+                else
+                {
+                    
                 }
             }
         }
-
     }
 }
