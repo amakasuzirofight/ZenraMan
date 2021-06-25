@@ -37,7 +37,7 @@ namespace MyUtility
             PlayerClimb playerClimb = new PlayerClimb();
             Locator<IObjectTouchable>.Bind(playerClimb, 2);
             Locator<IItemUsable>.Bind(playerCore);
-            
+            Locator<IChangeVariableGimmick>.Bind(playerCore);
             Locator<IObjectExecutable>.Bind(playerGimmickActivate, 0);
             Locator<IObjectExecutable>.Bind(playerClimb, 1);
         }

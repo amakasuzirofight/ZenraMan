@@ -40,15 +40,17 @@ namespace Zenra
                     switch (item)
                     {
                         case GimmickType.NULL:
-                            Debug.Log("Null");
+                            Debug.LogError("Null");
                             break;
                         case GimmickType.HIDE:
-                            changeVariableGimmick.SetStartHide();
+                            Debug.Log("Hide");
+                            changeVariableGimmick.SetIsHide();
                             break;
                         case GimmickType.SAVE:
                             Debug.Log("Save");
                             break;
                         case GimmickType.HEAL:
+                            Debug.Log("Heal");
                             changeVariableGimmick.SetHealToHp(1);
                             break;
                         default:

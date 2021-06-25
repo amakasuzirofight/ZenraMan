@@ -130,18 +130,6 @@ namespace Zenra
                 return _isUseGimmick;
             }
 
-            void IChangeVariableGimmick.SetStartHide()
-            {
-                _isHide = true;
-                _isUseGimmick = true;
-            }
-
-            void IChangeVariableGimmick.SetFinishHide()
-            {
-                _isHide = false;
-                _isUseGimmick = false;
-            }
-
             void IChangeVariableGimmick.SetHealToHp()
             {
                 _hp = MAX_HP;
@@ -149,7 +137,14 @@ namespace Zenra
 
             void IChangeVariableGimmick.SetHealToHp(int healAmount)
             {
+                Debug.Log("回復");
                 _hp = healAmount;
+            }
+
+            void IChangeVariableGimmick.SetIsHide()
+            {
+                _isHide = !_isHide;
+                _isUseGimmick = !_isUseGimmick;
             }
         }
     }
