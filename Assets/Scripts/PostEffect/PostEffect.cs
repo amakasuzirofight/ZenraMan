@@ -1,5 +1,4 @@
 using UnityEngine;
-using Zenject;
 using DG.Tweening;
 
 namespace Zenra
@@ -8,23 +7,39 @@ namespace Zenra
     {
         public class PostEffect
         {
-            [Inject] private IPlayPostEffect postEffectPlayer;
-            [Inject] private IGetMaterialData materialDB;
+            private IPlayPostEffect postEffectPlayer;
+            private IGetMaterialData materialDB;
+
+            public PostEffect(IPlayPostEffect postEffectPlayer, IGetMaterialData materialDB)
+            {
+                this.postEffectPlayer = postEffectPlayer;
+                this.materialDB = materialDB;
+            }
 
             public void SimpleFade(float time, Color color, FadeType fadeType)
             {
-                Material mat = materialDB.GetMaterial(PostEffectType.SimpleFade);
-                mat.SetColor("Color", color);
-
-                int fadeId = "Fade".GetHashCode();
-                switch(fadeType)
+                Material mat = null;
+                materialDB.SetShader(PostEffectType.SimpleFade, ref mat);
+                mat.SetColor("_Color", color);
+                int fadeId = Shader.PropertyToID("_Fade");
+                switch (fadeType)
                 {
                     case FadeType.In:
-                        mat.DOFloat(0, fadeId, time).onComplete += postEffectPlayer.In;
+                        Debug.Log("IN");
+                        postEffectPlayer.SetActive(true);
+                        DOVirtual.Float(1, 0, time, value =>
+                        {
+                            mat.SetFloat(fadeId, value);
+                        }).SetEase(Ease.Linear).onComplete += () => postEffectPlayer.SetActive(false);
+
                         break;
                     case FadeType.Out:
-                        postEffectPlayer.Out();
-                        mat.DOFloat(1, fadeId, time);
+                        Debug.Log("OUT");
+                        postEffectPlayer.SetActive(true);
+                        DOVirtual.Float(0, 1, time, value =>
+                        {
+                            mat.SetFloat(fadeId, value);
+                        }).SetEase(Ease.Linear);
                         break;
                 }
             }

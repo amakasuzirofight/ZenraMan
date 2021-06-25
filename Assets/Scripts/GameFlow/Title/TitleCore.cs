@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Zenra.SceneManagement;
 
 namespace Zenra
 {
-    namespace SceneManagement
+    namespace Title
     {
         public class TitleCore
         {
-
+            public void LoadStageSelectScene()
+            {
+                SceneLoader.LoadSceneAsync(Scenes.StageSelect);
+            }
         }
     }
 }

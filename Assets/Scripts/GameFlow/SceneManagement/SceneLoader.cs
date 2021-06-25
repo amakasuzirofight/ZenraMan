@@ -10,12 +10,21 @@ namespace Zenra
     {
         public static class SceneLoader
         {
-            private static Scenes nowScene = Scenes.Title;
+            public static Scenes NowScene { get; private set; } = Scenes.Title;
 
-            private static AsyncOperation LoadSceneAsync(Scenes scene, Action<AsyncOperation> loadedAction = null)
+            public static AsyncOperation LoadSceneAsync(Scenes scene, Action<AsyncOperation> loadedAction = null)
             {
                 AsyncOperation op = SceneManager.LoadSceneAsync(scene.ToString());
-                op.completed += loadedAction;
+
+                Action<AsyncOperation> act = (op) => 
+                {
+                    loadedAction?.Invoke(op);
+                    NowScene = scene;
+                };
+
+                op.completed += act;
+                op.completed += (op) => { op.completed -= act; };
+
                 return op;
             }
         }
