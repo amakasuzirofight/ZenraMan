@@ -11,6 +11,8 @@ namespace Zenra
         {
             static IGimmickAction nullObject = new NullGimmickAction();
             IGimmickAction gimmickAction = nullObject;
+            IChangeVariableGimmick changeVariableGimmick = null;
+
             public void EnterAction(GameObject touchObj)
             {
                 gimmickAction = touchObj.GetComponent<IGimmickAction>();
@@ -27,6 +29,11 @@ namespace Zenra
                 if (gimmickAction == nullObject) return;
                 var GimmickTypeList = gimmickAction.GimmickTypes;
                 gimmickAction?.GimmickAction();
+
+                if (changeVariableGimmick == null)
+                {
+                    changeVariableGimmick = MyUtility.Locator<IChangeVariableGimmick>.GetT();
+                }
                 // Ç±Ç±Ç…É{É^ÉìÇ™âüÇ≥ÇÍÇΩéûÇÃèàóù
                 foreach (var item in GimmickTypeList)
                 {
@@ -36,13 +43,13 @@ namespace Zenra
                             Debug.Log("Null");
                             break;
                         case GimmickType.HIDE:
-                            Debug.Log("Hide");
+                            changeVariableGimmick.SetStartHide();
                             break;
                         case GimmickType.SAVE:
                             Debug.Log("Save");
                             break;
                         case GimmickType.HEAL:
-                            Debug.Log("Heal");
+                            changeVariableGimmick.SetHealToHp(1);
                             break;
                         default:
                             break;
