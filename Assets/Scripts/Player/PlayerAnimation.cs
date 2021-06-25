@@ -7,7 +7,7 @@ namespace Zenra
 {
     namespace Player
     {
-        public class PlayerAnimation : MonoBehaviour, IPlayerChangeFixedTime
+        public class PlayerAnimation : MonoBehaviour, IPlayerAnimationChangeFixedTime
         {
             private PlayerCore _core;
             private Animator _animator;

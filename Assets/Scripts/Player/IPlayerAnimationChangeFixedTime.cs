@@ -1,6 +1,6 @@
 ﻿namespace Zenra.Player
 {
-    public interface IPlayerChangeFixedTime
+    public interface IPlayerAnimationChangeFixedTime
     {
         void ChangeFixedTime(float change);
         void AddFixedTime(float add);
