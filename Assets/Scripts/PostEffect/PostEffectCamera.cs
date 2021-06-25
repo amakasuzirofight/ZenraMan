@@ -1,16 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Zenra
 {
     namespace PostEffect
     {
-        public class PostEffectCamera : MonoBehaviour
+        public class PostEffectCamera : MonoBehaviour, IPlayPostEffect
         {
+            [SerializeField] RawImage fadeBack = null;
             private RenderTexture renderTexture = null;
 
-            [SerializeField] private Material[] mats = null;
+            public void In()
+            {
+                fadeBack.gameObject.SetActive(false);
+            }
+
+            public void Out()
+            {
+                fadeBack.gameObject.SetActive(true);
+            }
 
             private void Awake()
             {
