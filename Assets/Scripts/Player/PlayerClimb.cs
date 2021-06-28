@@ -42,6 +42,7 @@ namespace Zenra
 
                 _sendLadderPos = null;
                 _climbable.CannotClimb();
+                
                 _actionClimb = MyUtility.Locator<IActionClimb>.GetT();
                 _actionClimb.actionClimb(false);
             }
@@ -55,10 +56,6 @@ namespace Zenra
                     _actionClimb = MyUtility.Locator<IActionClimb>.GetT();
                     _actionClimb.shiftPlayerPos(_ladderPos.x);
                     _actionClimb.actionClimb(true);
-                }
-                else
-                {
-                    
                 }
             }
         }
