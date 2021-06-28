@@ -4,6 +4,7 @@ using UnityEngine;
 using Zenra.Inputer;
 using Zenra.Item;
 using Zenra.Player;
+using Zenra.Title;
 
 namespace MyUtility
 {
@@ -20,6 +21,7 @@ namespace MyUtility
             ItemSerector itemSerector = new ItemSerector();
             PlayerGimmickActivate playerGimmickActivate = new PlayerGimmickActivate();
             
+
 
             Locator<IInputer>.Bind(new DebugInputer());
             Locator<IUseItem>.Bind(itemSerector);
