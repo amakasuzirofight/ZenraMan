@@ -9,7 +9,7 @@ namespace Zenra
 {
     namespace Player
     {
-        public class PlayerCore : IClimbable, IItemUsable
+        public class PlayerCore : IClimbable, IItemUsable, IChangeVariableGimmick
         {
             private int _hp; //_で変数名を決めておけば_で予測変換が使いやすい　privateで使用されたし
             private List<ItemName> _itemList;
@@ -128,6 +128,23 @@ namespace Zenra
             public bool GetIsUseGimmick()
             {
                 return _isUseGimmick;
+            }
+
+            void IChangeVariableGimmick.SetHealToHp()
+            {
+                _hp = MAX_HP;
+            }
+
+            void IChangeVariableGimmick.SetHealToHp(int healAmount)
+            {
+                Debug.Log("回復");
+                _hp = healAmount;
+            }
+
+            void IChangeVariableGimmick.SetIsHide()
+            {
+                _isHide = !_isHide;
+                _isUseGimmick = !_isUseGimmick;
             }
         }
     }

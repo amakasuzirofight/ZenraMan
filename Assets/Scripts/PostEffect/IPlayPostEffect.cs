@@ -4,8 +4,7 @@ namespace Zenra
     {
         public interface IPlayPostEffect
         {
-            void In();
-            void Out();
+            void SetActive(bool b);
         }
     }
 }

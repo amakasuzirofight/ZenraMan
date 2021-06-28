@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Zenra
 {
@@ -8,28 +9,31 @@ namespace Zenra
     {
         public class PostEffectMaterialDB : MonoBehaviour, IGetMaterialData
         {
-            [SerializeField] private PostEffectMaterialData[] datas = null;
+            [SerializeField] private PostEffectShaderData[] datas = null;
+            [SerializeField] RawImage rawImage = null;
 
-            public Material GetMaterial(PostEffectType type)
+            void IGetMaterialData.SetShader(PostEffectType type, ref Material mat)
             {
-                foreach (PostEffectMaterialData data in datas)
+                foreach (PostEffectShaderData data in datas)
                 {
                     if (type == data.Type)
                     {
-                        return data.Material;
+                        rawImage.material.shader = data.Shader;
+                        mat = rawImage.material;
+                        return;
                     }
                 }
-                return null;
             }
         }
 
-        public class PostEffectMaterialData
+        [System.Serializable]
+        public class PostEffectShaderData
         {
             [SerializeField] PostEffectType type = PostEffectType.SimpleFade;
-            [SerializeField] Material material = null;
+            [SerializeField] Shader shader = null;
 
             public PostEffectType Type => type;
-            public Material Material => material;
+            public Shader Shader => shader;
         }
     }
 }

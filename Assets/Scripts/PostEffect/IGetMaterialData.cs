@@ -6,7 +6,7 @@ namespace Zenra
     {
         public interface IGetMaterialData
         {
-            Material GetMaterial(PostEffectType type);
+            void SetShader(PostEffectType type, ref Material mat);
         }
     }
 }

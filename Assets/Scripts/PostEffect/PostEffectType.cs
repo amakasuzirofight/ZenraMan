@@ -5,7 +5,8 @@
         public enum PostEffectType
         {
             SimpleFade,
-
+            BloodFade,
+            PressureFade,
         }
     }
 }
