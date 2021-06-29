@@ -18,6 +18,7 @@ namespace Zenra
             private float addXSpeed;
             private float addYSpeed;
 
+
             private void Awake()
             {
                 // たぶん自分のIActionClimbをBind
@@ -40,14 +41,17 @@ namespace Zenra
                 if(_canClimb == false)
                 {
                     addXSpeed = (_input.HoriMoveDir() * _speed);//実際に動かす
+                    addYSpeed = 0.0f;
                 }
 
                 if (_canClimb == true)
                 {
                     addYSpeed = (_input.VertMoveDir() * _speed);
+                    addXSpeed = 0.0f;
                 }
 
                 _rb2d.velocity = new Vector2(addXSpeed, addYSpeed);     // 移動時に重力が考慮されない
+                Debug.Log("addYSpeed" + addYSpeed);
             }
 
             // はしごにプレイヤーの位置を補正する
