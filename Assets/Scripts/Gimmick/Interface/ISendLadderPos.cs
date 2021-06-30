@@ -8,6 +8,8 @@ namespace Zenra
             {
                 float SendLadderPosX();
                 float SendLadderPosY();
+                float SendLadderHighestPosY();
+                float SendLadderLowestPosY();
             }
         }
     }

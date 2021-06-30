@@ -51,7 +51,7 @@ namespace Zenra
                 }
 
                 _rb2d.velocity = new Vector2(addXSpeed, addYSpeed);     // 移動時に重力が考慮されない
-                Debug.Log("addYSpeed" + addYSpeed);
+                //Debug.Log("addYSpeed" + addYSpeed);
             }
 
             // はしごにプレイヤーの位置を補正する
@@ -63,6 +63,18 @@ namespace Zenra
             void IActionClimb.actionClimb(bool isClimb)
             {
                 _canClimb = isClimb;
+            }
+
+            void IActionClimb.CheckLadderUpDown(float ladderPosY)
+            {
+                if (transform.position.y < ladderPosY)
+                {
+                    //Debug.Log("Up");
+                }
+                else
+                {
+                    //Debug.Log("Down");
+                }
             }
         }
     }
