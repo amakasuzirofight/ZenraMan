@@ -14,7 +14,7 @@ namespace Zenra
 
             public void InstantiateElement(StageElementData data)
             {
-                StageElementView instance = Instantiate(prefab, elementsParent);
+                StageElementView instance = Instantiate(prefab, Vector3.zero, Quaternion.identity, elementsParent);
                 ((IStageElementInitalize)instance).Initalize(data);
             }
 
