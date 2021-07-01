@@ -5,7 +5,8 @@ using Zenra.Inputer;
 using Zenra.Item;
 using Zenra.Player;
 using Zenra.Title;
-
+using Zenra.Police;
+using PoliceCamera;
 namespace MyUtility
 {
     public class Mappings
@@ -42,6 +43,9 @@ namespace MyUtility
             Locator<IChangeVariableGimmick>.Bind(playerCore);
             Locator<IObjectExecutable>.Bind(playerGimmickActivate, 0);
             Locator<IObjectExecutable>.Bind(playerClimb, 1);
+
+            Locator<IPlayerOn>.Bind(new WarningCamera(), 0);
+
         }
     }
 }
