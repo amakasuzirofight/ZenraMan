@@ -2,7 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LadderBottom : MonoBehaviour
+namespace Zenra
 {
+    namespace Gimmick
+    {
+        namespace Ladder
+        {
+            public class LadderBottom : MonoBehaviour
+            {
     
+            }
+        }
+    }
 }

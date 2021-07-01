@@ -7,7 +7,7 @@ namespace Zenra
         {
             void shiftPlayerPos(float x);
             void actionClimb(bool isClimb);
-            void CheckLadderUpDown(float ladderPosY);
+            void changeMoveMode(int enumNum);
         }
     }
 }

@@ -18,6 +18,15 @@ namespace Zenra
             private float addXSpeed;
             private float addYSpeed;
 
+            public enum MoveMode
+            {
+                Xmove,
+                ClumbLadder,
+                DownLadder
+            }
+
+            MoveMode moveMode;
+
 
             private void Awake()
             {
@@ -29,6 +38,7 @@ namespace Zenra
             {
                 _rb2d = GetComponent<Rigidbody2D>();
                 _input = MyUtility.Locator<IInputer>.GetT();//ロケーターを使用して値が入ったIInputerを取得
+                moveMode = MoveMode.Xmove;
             }
 
             void Update()
@@ -46,6 +56,17 @@ namespace Zenra
 
                 if (_canClimb == true)
                 {
+                    // Mathf.Sign()で中身が正の値なら1、負の値なら－1、0なら0を出す
+                    if(moveMode == MoveMode.DownLadder && Mathf.Sign(_input.VertMoveDir()) == 1)
+                    {
+                        return;
+                    }
+
+                    if(moveMode == MoveMode.ClumbLadder && Mathf.Sign(_input.VertMoveDir()) == -1)
+                    {
+                        return;
+                    }
+
                     addYSpeed = (_input.VertMoveDir() * _speed);
                     addXSpeed = 0.0f;
                 }
@@ -65,16 +86,10 @@ namespace Zenra
                 _canClimb = isClimb;
             }
 
-            void IActionClimb.CheckLadderUpDown(float ladderPosY)
+            void IActionClimb.changeMoveMode(int enumNum)
             {
-                if (transform.position.y < ladderPosY)
-                {
-                    //Debug.Log("Up");
-                }
-                else
-                {
-                    //Debug.Log("Down");
-                }
+                moveMode = (MoveMode)enumNum;
+                Debug.Log("MoveMode = " + moveMode);
             }
         }
     }
