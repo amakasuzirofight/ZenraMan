@@ -1,5 +1,7 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using Zenra.Inputer;
 
@@ -11,22 +13,16 @@ namespace Zenra
         {
             [SerializeField] Animator animator = null;
 
-            private TitleCore titleCore = null;
             private IInputer input = null;
 
-            private void Awake()
+            
+            private async void Awake()
             {
-                titleCore = MyUtility.Locator<TitleCore>.GetT();
                 input = MyUtility.Locator<IInputer>.GetT();
                 animator.Play("ShowTitle");
-            }
 
-            private void Update()
-            {
-                if(input.IsItemButtonDown())
-                {
-                    titleCore.LoadStageSelectScene();
-                }
+                await UniTask.WaitUntil(() => input.IsItemButtonDown());
+                new TitleCore().LoadStageSelectScene();
             }
         }
     }
