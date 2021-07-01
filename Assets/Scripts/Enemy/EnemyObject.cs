@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Zenra.KillLight;
+using Zenject;
 namespace Zenra
 {
     namespace Police
     {
         public class EnemyObject : MonoBehaviour
         {
+            [Inject] FlashLight lightOn;
+            [Space(30)]
             [SerializeField] GameObject lightHitObj;
             ILightHit lightHit;
             [SerializeField, Range(0, 10)]
@@ -20,9 +23,11 @@ namespace Zenra
             EnemyState enemyState = EnemyState.MOVE;
             Rigidbody2D rb;
             bool InShotLenge = false;//射程内にプレイヤーがいるかどうか
+            Animator animator;
             void Start()
             {
                 rb = GetComponent<Rigidbody2D>();
+                animator = GetComponent<Animator>();
                 lightHit = lightHitObj.GetComponent<ILightHit>();
                 lightHit.LightHitEvent += LightHit_LightHitEvent;
                 lightHit.LightExitEvent += LightHit_LightExitEvent;
@@ -60,11 +65,21 @@ namespace Zenra
                         break;
                     case EnemyState.WEPONCHANGE:
                         //アニメーション
+                        if(InShotLenge)
+                        {
+                            animator.SetBool("ChangeGunFlg", true);
+                        }
+                        else
+                        {
+                            animator.SetBool("ChangeGunFlg", false);
+                        }
                         break;
                     case EnemyState.SHOT:
+                        animator.SetTrigger("GunShotTrigger");
                         Debug.Log("ばっきゅん");
                         break;
                     case EnemyState.MOVE:
+                        animator.SetBool("ChangeGunFlg", false);
                         MoveBase();
                         break;
 
@@ -74,12 +89,12 @@ namespace Zenra
             }
 
             bool canrun = true;
-            bool turnflg = false;
+            bool isTurn = false;
             bool RandomLaunge = true;
             float rand;
             void MoveBase()
             {
-                canrun = enemyState == EnemyState.MOVE;
+               
                 lightHitObj.SetActive(true);
                 //最初に移動時間を決める
                 if (RandomLaunge == true)
@@ -103,26 +118,32 @@ namespace Zenra
                 {
                     timecount = 0;
                     canrun = false;
+                    rb.velocity = Vector2.zero;
+                    //lightOn.LightSwitch(false);
+                    animator.SetBool("TurnAnimFlg", true);
                     StartCoroutine("Turn");
 
                 }
-
+           
             }
             IEnumerator Turn()
             {
+                
                 yield return new WaitForSeconds(0.5f);
                 if (enemyState == EnemyState.MOVE)
                 {
                     transform.localScale *= new Vector2(-1, 1);
+                    animator.SetBool("TurnAnimFlg", false);
                     speed *= -1;
                     canrun = true;
                     timecount = 0;
                     RandomLaunge = true;
+                    lightOn.LightSwitch(true);
                 }
             }
             IEnumerator ChangeGun()
             {
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.48f);
                 if (InShotLenge == true)
                 {
                     enemyState = EnemyState.SHOT;
@@ -133,16 +154,6 @@ namespace Zenra
                 }
             }
 
-
-            IEnumerator MoveStop(EnemyState enemyState, float waitTime)
-            {
-                yield return new WaitForSeconds(waitTime);
-
-            }
-            IEnumerator PoliStop(EnemyState enemyState, float waitTime)
-            {
-                yield return new WaitForSeconds(waitTime);
-            }
             void ResetSpeed()
             {
                 speed = 0;

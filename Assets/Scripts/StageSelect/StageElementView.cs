@@ -12,7 +12,13 @@ namespace Zenra
 
             void IStageElementInitalize.Initalize(StageElementData data)
             {
+                spriteRenderer.sprite = data.Sprite;
                 gameObject.SetActive(true);
+            }
+
+            public void LoadStageScene()
+            {
+
             }
         }
     }
