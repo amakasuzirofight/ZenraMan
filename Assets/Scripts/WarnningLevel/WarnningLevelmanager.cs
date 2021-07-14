@@ -11,22 +11,17 @@ public class WarnningLevelmanager : MonoBehaviour,IWhenWarnningLevelUp
     void Start()
     {
 
-
-
-
-
-
-
-
-
-
-
         PlayerOn = Locator<IPlayerOn>.GetT();
+        PlayerOn.OnlightEvent += LevelUp;
         WarnningLevel = 0;
     }
 
     void Update()
     {
         
+    }
+    public void LevelUp()
+    {
+        WarnningLevel++;
     }
 }

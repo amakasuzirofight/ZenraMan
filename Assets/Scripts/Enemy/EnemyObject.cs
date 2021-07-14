@@ -38,7 +38,6 @@ namespace Zenra
                 enemyState = EnemyState.WEPONCHANGE;
                 InShotLenge = true;
                 StartCoroutine(ChangeGun());
-                Debug.Log("Ç¢ÇΩÅI");
             }
 
             private void LightHit_LightExitEvent()
@@ -76,7 +75,7 @@ namespace Zenra
                         break;
                     case EnemyState.SHOT:
                         animator.SetTrigger("GunShotTrigger");
-                        Debug.Log("ÇŒÇ¡Ç´Ç„ÇÒ");
+
                         break;
                     case EnemyState.MOVE:
                         animator.SetBool("ChangeGunFlg", false);
