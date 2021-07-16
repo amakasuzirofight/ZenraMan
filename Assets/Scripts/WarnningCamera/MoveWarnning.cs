@@ -26,7 +26,7 @@ public class MoveWarnning : MonoBehaviour
     void Update()
     {
         Move();
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Return))//test
         {
             isElectric = false;
         }
