@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af403079a4d43134b93d449ec1e17b27, type: 3}
   m_Name: Mountain
   m_EditorClassIdentifier: 
-  sprite: {fileID: 6912131441315039729, guid: e39ec776f3d42c14784a25244ff3faab, type: 3}
+  sprite: {fileID: 21300000, guid: 079697714cffca945958fb6c8f4de74d, type: 3}
   stageName: 1
+  info: "\u5C71\u5965\u306E\u6E29\u6CC9\u306B\u8868\u308C\u305F\u5168\u88F8"
