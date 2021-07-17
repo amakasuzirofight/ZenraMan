@@ -8,12 +8,10 @@ namespace Zenra
     {
         public class PostEffector
         {
-            private IPlayPostEffect postEffectPlayer;
             private IGetMaterialData materialDB;
 
-            public PostEffector(IPlayPostEffect postEffectPlayer, IGetMaterialData materialDB)
+            public PostEffector(IGetMaterialData materialDB)
             {
-                this.postEffectPlayer = postEffectPlayer;
                 this.materialDB = materialDB;
             }
 

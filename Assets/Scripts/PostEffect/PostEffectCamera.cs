@@ -7,7 +7,7 @@ namespace Zenra
 {
     namespace PostEffect
     {
-        public class PostEffectCamera : MonoBehaviour, IPlayPostEffect
+        public class PostEffectCamera : MonoBehaviour
         {
             [SerializeField] RawImage fadeBack = null;
             [SerializeField] RenderTexture renderTexture = null;
@@ -16,11 +16,6 @@ namespace Zenra
             {
                 renderTexture.width = Screen.width;
                 renderTexture.height = Screen.height;
-            }
-
-            void IPlayPostEffect.SetActive(bool b)
-            {
-                fadeBack.gameObject.SetActive(b);
             }
         }
     }
