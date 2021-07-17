@@ -14,6 +14,8 @@ namespace Zenra
             private IInputer _input = new NullInputer();//iinputerを作成　何も値入ってない
             private Rigidbody2D _rb2d = null;//ADDforce用RB
             private bool _canClimb = false;
+            private Animator _animator = null;   // Animator用
+            private SpriteRenderer _spriteRenderer;     // SpriteRenderer用
 
             private float addXSpeed;
             private float addYSpeed;
@@ -21,7 +23,7 @@ namespace Zenra
             public enum MoveMode
             {
                 Xmove,
-                ClumbLadder,
+                ClimbLadder,
                 DownLadder
             }
 
@@ -37,13 +39,45 @@ namespace Zenra
             void Start()
             {
                 _rb2d = GetComponent<Rigidbody2D>();
+                _animator = GetComponent<Animator>();
+                _spriteRenderer = GetComponent<SpriteRenderer>();
                 _input = MyUtility.Locator<IInputer>.GetT();//ロケーターを使用して値が入ったIInputerを取得
                 moveMode = MoveMode.Xmove;
             }
 
             void Update()
             {
+                // 移動アニメーション管理
+                if(addXSpeed != 0.0f)
+                {
+                    float reverse = Mathf.Sign(addXSpeed);      // 右移動なら1.0、左移動なら－1.0、0.0は出ない
+                    bool filp = (reverse == -1) ? true : false;     // 左、つまり－1.0ならture
+                    _spriteRenderer.flipX = filp;       // 左、つまり－1.0ならSpriteRendererのflipXする
+                    _animator.SetBool("Walk", true);    // 移動アニメーション
+                }
+                else
+                {
+                    _animator.SetBool("Walk", false);       // X移動が0.0ならIdolアニメーション
+                }
 
+                if(_canClimb == true)
+                {
+                    _animator.SetBool("Climb", true);
+                    if(addYSpeed == 0.0f)
+                    {
+                        _animator.SetBool("ClimbIdol", true);
+                    }
+                    else
+                    {
+                        _animator.SetBool("ClimbIdol", false);
+                    }
+
+                    
+                }
+                else
+                {
+                    _animator.SetBool("Climb", false);
+                }
             }
 
             private void FixedUpdate()
@@ -62,7 +96,7 @@ namespace Zenra
                         return;
                     }
 
-                    if(moveMode == MoveMode.ClumbLadder && Mathf.Sign(_input.VertMoveDir()) == -1)
+                    if(moveMode == MoveMode.ClimbLadder && Mathf.Sign(_input.VertMoveDir()) == -1)
                     {
                         return;
                     }
@@ -72,7 +106,6 @@ namespace Zenra
                 }
 
                 _rb2d.velocity = new Vector2(addXSpeed, addYSpeed);     // 移動時に重力が考慮されない
-                //Debug.Log("addYSpeed" + addYSpeed);
             }
 
             // はしごにプレイヤーの位置を補正する
