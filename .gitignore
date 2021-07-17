@@ -9,6 +9,9 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+Assets/OpenCV+Unity/Demo/Face_Detector/shape_predictor_68_face_landmarks.bytes
+Assets/OpenCV+Unity/Plugins/iOS/libOpenCvSharpExtern.a
+Assets/Fonts/PixelMplus12-Regular.asset
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
