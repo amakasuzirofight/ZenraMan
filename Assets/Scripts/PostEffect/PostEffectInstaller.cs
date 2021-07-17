@@ -10,7 +10,7 @@ namespace Zenra
             [SerializeField] GameObject postEffectCamera;
             public override void InstallBindings()
             {
-                Container.Bind<PostEffect>().AsSingle();
+                Container.Bind<PostEffector>().AsSingle();
                 Container.Bind<IGetMaterialData>().To<PostEffectMaterialDB>().FromComponentOn(postEffectCamera).AsCached();
                 Container.Bind<IPlayPostEffect>().To<PostEffectCamera>().FromComponentOn(postEffectCamera).AsCached();
             }
