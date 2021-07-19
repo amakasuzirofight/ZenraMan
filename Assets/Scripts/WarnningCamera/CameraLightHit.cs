@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Zenra.WarnningCamera
 {
-    public class CameraLightHit : MonoBehaviour, IWhenWarnningLevelUp
+    public class CameraLightHit : MonoBehaviour/*, IWhenWarnningLevelUp*/,IIsWarnningCamera
 
     {
-        public event PlayerDiscover PlayerDiscoverEvent;
+        //public event PlayerDiscover PlayerDiscoverEvent;
         bool hitFlg;
         // Start is called before the first frame update
         void Start()
@@ -20,18 +20,18 @@ namespace Zenra.WarnningCamera
         {
 
         }
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            IWhenPlayerHitCamera whenPlayerHitCamera = default;
-            whenPlayerHitCamera.GoEventHitCamera(this);
+        //private void OnTriggerEnter2D(Collider2D collision)
+        //{
+        //    IWhenPlayerHitCamera whenPlayerHitCamera = default;
+        //    whenPlayerHitCamera.GoEventHitCamera(this);
 
-            if (collision.gameObject.name == "Player")
-            {
-                if (hitFlg) return;
-                PlayerDiscoverEvent();
-                hitFlg = true;
-            }
-        }
+        //    if (collision.gameObject.name == "Player")
+        //    {
+        //        if (hitFlg) return;
+        //        PlayerDiscoverEvent();
+        //        hitFlg = true;
+        //    }
+        //}
     }
 
 }

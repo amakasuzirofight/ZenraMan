@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MyUtility;
-public class WarnningLevelmanager : MonoBehaviour
+namespace Zenra.WarnningManager
 {
-    
-    int WarnningLevel;
-    void Start()
+    public class WarnningLevelmanager : MonoBehaviour
     {
+        [SerializeField] GameObject PlHitWCamera;
 
-        
-        WarnningLevel = 0;
+        int WarnningLevel;
+        void Start()
+        {
+            WarnningLevel = 0;
+        }
+
+        void Update()
+        {
+
+        }
+
     }
 
-    void Update()
-    {
-        
-    }
-  
 }
