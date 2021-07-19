@@ -7,7 +7,7 @@ namespace Zenra
 {
     namespace Player
     {
-        public class PlayerMove : MonoBehaviour, IActionClimb
+        public class PlayerMove : MonoBehaviour, IActionClimb,IWhenPlayerHitCamera
         {
             [SerializeField, Range(0, 50)]//0から50までの値をインスペクターでいじれるようになる
             private float _speed = 0;
@@ -123,6 +123,11 @@ namespace Zenra
             {
                 moveMode = (MoveMode)enumNum;
                 Debug.Log("MoveMode = " + moveMode);
+            }
+
+            public GameObject GetObj()
+            {
+                return this.gameObject;
             }
         }
     }
