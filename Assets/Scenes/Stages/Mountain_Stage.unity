@@ -401,7 +401,7 @@ Transform:
   m_Children:
   - {fileID: 1814955984}
   m_Father: {fileID: 612670171}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &446729078
 GameObject:
@@ -412,6 +412,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 446729079}
+  - component: {fileID: 446729080}
   m_Layer: 0
   m_Name: Clouds
   m_TagString: Untagged
@@ -441,6 +442,20 @@ Transform:
   m_Father: {fileID: 612670171}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &446729080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446729078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3d5fdefb61a33458cf339771e16b84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalMove: 1
+  verticalMove: 0
 --- !u!1 &508734291
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,9 +655,9 @@ Transform:
   - {fileID: 874055949}
   - {fileID: 2031930150}
   - {fileID: 446729079}
+  - {fileID: 919525340}
   - {fileID: 374617888}
   - {fileID: 1832409805}
-  - {fileID: 919525340}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -656,6 +671,7 @@ GameObject:
   m_Component:
   - component: {fileID: 632383122}
   - component: {fileID: 632383123}
+  - component: {fileID: 632383124}
   m_Layer: 0
   m_Name: Sky
   m_TagString: Untagged
@@ -729,6 +745,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &632383124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632383121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3d5fdefb61a33458cf339771e16b84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalMove: 1
+  verticalMove: 0
 --- !u!1 &711562991
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,6 +1161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 874055949}
+  - component: {fileID: 874055950}
   m_Layer: 0
   m_Name: BackMountain 1
   m_TagString: Untagged
@@ -1158,6 +1189,20 @@ Transform:
   m_Father: {fileID: 612670171}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &874055950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874055948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3d5fdefb61a33458cf339771e16b84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalMove: 0.9
+  verticalMove: 0
 --- !u!1 &912501419
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,6 +1296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 919525340}
   - component: {fileID: 919525341}
+  - component: {fileID: 919525342}
   m_Layer: 0
   m_Name: Moon
   m_TagString: Untagged
@@ -1271,7 +1317,7 @@ Transform:
   m_Children:
   - {fileID: 718066833}
   m_Father: {fileID: 612670171}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &919525341
 SpriteRenderer:
@@ -1325,6 +1371,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &919525342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919525339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3d5fdefb61a33458cf339771e16b84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalMove: 1
+  verticalMove: 0
 --- !u!1 &969567488
 GameObject:
   m_ObjectHideFlags: 0
@@ -2758,7 +2818,7 @@ Transform:
   m_Children:
   - {fileID: 2106091034}
   m_Father: {fileID: 612670171}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1898960658
 GameObject:
@@ -4549,6 +4609,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2031930150}
+  - component: {fileID: 2031930151}
   m_Layer: 0
   m_Name: BackMountain 2
   m_TagString: Untagged
@@ -4576,6 +4637,20 @@ Transform:
   m_Father: {fileID: 612670171}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2031930151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031930149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3d5fdefb61a33458cf339771e16b84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalMove: 0.85
+  verticalMove: 0
 --- !u!1 &2084884966
 GameObject:
   m_ObjectHideFlags: 0

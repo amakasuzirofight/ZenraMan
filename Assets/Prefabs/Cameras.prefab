@@ -441,6 +441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3746814913400883447}
   - component: {fileID: 593433436383923997}
+  - component: {fileID: 6384272194260629096}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -489,3 +490,16 @@ MonoBehaviour:
     shader: {fileID: -6465566751694194690, guid: 3797e4388bf34cd448f4cbe062b102ac,
       type: 3}
   rawImage: {fileID: 3746814912649484019}
+--- !u!114 &6384272194260629096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3746814913400883444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10f199bdb3a9e9644a14dd06b18ead94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 25

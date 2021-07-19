@@ -62,7 +62,7 @@
 				}
 				return true;
 			}
-			faceTexture = output = TrimmingTexture.Trim(new Vector2Int(topRight.X, topRight.Y), new Vector2Int(bottomLeft.X, bottomLeft.Y), input2D);
+			faceTexture = TrimmingTexture.Trim(new Vector2Int(topRight.X, topRight.Y), new Vector2Int(bottomLeft.X, bottomLeft.Y), input2D);
 			return true;
 		}
 
