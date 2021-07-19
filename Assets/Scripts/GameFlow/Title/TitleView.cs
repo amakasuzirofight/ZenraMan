@@ -17,6 +17,7 @@ namespace Zenra
         {
             [SerializeField] Animator animator = null;
             [SerializeField] RawImage faceImage = null;
+            [SerializeField] CanvasGroup faceImageGroup = null;
             [SerializeField] FaceDetectorScene faceDetector = null;
 
             PostEffector postEffect;
@@ -34,16 +35,24 @@ namespace Zenra
                 input = MyUtility.Locator<IInputer>.GetT();
                 postEffect.Fade(PostEffectType.PressureFade, 0.5f, Color.white, PostEffector.FadeType.In);
                 await UniTask.WaitUntil(() => input.IsItemButtonDown());
+                faceDetector.trimMode = true;
                 TrimFace();
             }
 
             private async void TrimFace()
             {
+                faceImageGroup.DOFade(0, 1);
                 animator.SetTrigger("TrimFaceMode");
                 faceDetector.enabled = true;
                 faceDetector.ResetFaceTex();
+                
                 await UniTask.WaitUntil(() => faceDetector.faceTexture != null);
+
+                faceImageGroup.gameObject.SetActive(true);
+                faceImageGroup.DOFade(1, 1);
                 faceDetector.enabled = false;
+                faceImage.texture = faceDetector.faceTexture;
+                faceImage.SetNativeSize();
                 animator.SetTrigger("TrimFaceIsOK");
 
                 while (true)
