@@ -26,7 +26,6 @@ namespace Zenra
             private void Injection(PostEffector postEffect)
             {
                 this.postEffect = postEffect;
-                Debug.Log("OK");
             }
             
             private async void Awake()
