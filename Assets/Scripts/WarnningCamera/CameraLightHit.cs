@@ -2,30 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraLightHit : MonoBehaviour, IWhenWarnningLevelUp
-
+namespace Zenra.WarnningCamera
 {
-    public event PlayerDiscover PlayerDiscoverEvent;
+    public class CameraLightHit : MonoBehaviour, IWhenWarnningLevelUp
 
-    // Start is called before the first frame update
-    void Start()
     {
+        public event PlayerDiscover PlayerDiscoverEvent;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        IWhenPlayerHitCamera whenPlayerHitCamera = default;
-        whenPlayerHitCamera.GoEventHitCamera(this);
-
-        if (collision.gameObject.name == "player")
+        // Start is called before the first frame update
+        void Start()
         {
-          
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            IWhenPlayerHitCamera whenPlayerHitCamera = default;
+            whenPlayerHitCamera.GoEventHitCamera(this);
+
+            if (collision.gameObject.name == "Player")
+            {
+                PlayerDiscoverEvent();
+            }
         }
     }
+
 }

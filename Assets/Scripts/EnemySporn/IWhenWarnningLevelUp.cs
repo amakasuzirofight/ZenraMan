@@ -1,4 +1,4 @@
-public delegate void PlayerDiscover(int level);
+public delegate void PlayerDiscover();
 interface IWhenWarnningLevelUp
 {
     event PlayerDiscover PlayerDiscoverEvent ;
