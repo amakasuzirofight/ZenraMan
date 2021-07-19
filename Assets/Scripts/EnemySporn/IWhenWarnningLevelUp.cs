@@ -1,5 +1,8 @@
-public delegate void PlayerDiscover();
-interface IWhenWarnningLevelUp
+namespace Zenra.WarnningCamera
 {
-    event PlayerDiscover PlayerDiscoverEvent ;
+    public delegate void PlayerDiscover();
+    interface IWhenWarnningLevelUp
+    {
+        event PlayerDiscover PlayerDiscoverEvent;
+    }
 }
