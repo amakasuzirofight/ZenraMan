@@ -8,11 +8,11 @@ namespace Zenra.WarnningCamera
 
     {
         public event PlayerDiscover PlayerDiscoverEvent;
-
+        bool hitFlg;
         // Start is called before the first frame update
         void Start()
         {
-
+            hitFlg = false;
         }
 
         // Update is called once per frame
@@ -27,7 +27,9 @@ namespace Zenra.WarnningCamera
 
             if (collision.gameObject.name == "Player")
             {
+                if (hitFlg) return;
                 PlayerDiscoverEvent();
+                hitFlg = true;
             }
         }
     }

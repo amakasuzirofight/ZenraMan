@@ -10,7 +10,7 @@ namespace Zenra
     {
         public class EnemyObject : MonoBehaviour
         {
-            [Inject] FlashLight lightOn;
+            [SerializeField] FlashLight lightOn;
             [Space(30)]
             [SerializeField] GameObject lightHitObj;
             ILightHit lightHit;
