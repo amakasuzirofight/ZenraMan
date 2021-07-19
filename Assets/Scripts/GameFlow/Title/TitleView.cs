@@ -3,6 +3,7 @@ using DG.Tweening;
 using MyUtility;
 using OpenCvSharp.Demo;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 using Zenra.Inputer;
 using Zenra.PostEffect;
@@ -15,7 +16,7 @@ namespace Zenra
         public class TitleView : MonoBehaviour
         {
             [SerializeField] Animator animator = null;
-            [SerializeField] Transform faceImage = null;
+            [SerializeField] RawImage faceImage = null;
             [SerializeField] FaceDetectorScene faceDetector = null;
 
             PostEffector postEffect;
@@ -66,7 +67,7 @@ namespace Zenra
             {
                 Locator<Texture2D>.Bind(faceDetector.faceTexture);
                 postEffect.Fade(PostEffectType.SimpleFade, 0.9f, Color.white, PostEffector.FadeType.Out);
-                faceImage.DOScale(new Vector3(5, 5, 10), 1f).SetEase(Ease.OutQuad).onComplete += () => 
+                faceImage.transform.DOScale(new Vector3(5, 5, 10), 1f).SetEase(Ease.OutQuad).onComplete += () => 
                 {
                     SceneLoader.LoadSceneAsync(Scenes.StageSelect, (op) =>
                     {
