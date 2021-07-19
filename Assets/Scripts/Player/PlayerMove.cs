@@ -7,7 +7,7 @@ namespace Zenra
 {
     namespace Player
     {
-        public class PlayerMove : MonoBehaviour, IActionClimb,IWhenPlayerHitCamera
+        public class PlayerMove : MonoBehaviour, IActionClimb
         {
             [SerializeField, Range(0, 50)]//0から50までの値をインスペクターでいじれるようになる
             private float _speed = 0;
