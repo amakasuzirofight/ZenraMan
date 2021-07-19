@@ -8,7 +8,7 @@ namespace Zenra
             HIDE = 0,
             SAVE,
             HEAL,
-            
+            COLD,
         }
     }
 }

@@ -53,6 +53,10 @@ namespace Zenra
                             Debug.Log("Heal");
                             changeVariableGimmick.SetHealToHp(1);
                             break;
+                        case GimmickType.COLD:
+                            Debug.Log("Cold");
+                            changeVariableGimmick.SetCold(1);
+                            break;
                         default:
                             break;
                     }
