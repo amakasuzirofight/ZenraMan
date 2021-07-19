@@ -10,6 +10,7 @@
 		public TextAsset shapes;
 
 		public Texture2D faceTexture { get; private set; } = null;
+		public bool trimMode = false;
 
 		private FaceProcessorLive<WebCamTexture> processor;
 
@@ -38,30 +39,16 @@
 			input2D.SetPixels(input.GetPixels());
 			input2D.Apply();
 
-			if (processor.Faces.Count == 0)
-			{
-				if (faceTexture != null)
-					output = faceTexture;
-				else
-				{
-					output = input2D;
-				}
-				return true;
-			}
+			if (faceTexture != null) return true;
+			output = input2D;
+			if (!trimMode) return true;
+			if (processor.Faces.Count == 0) return true;
 
-			Point topRight = processor.Faces[0].Region.TopRight;
+			Point topRight   = processor.Faces[0].Region.TopRight;
 			Point bottomLeft = processor.Faces[0].Region.BottomLeft;
 			
-			if (topRight.X <= 0 || topRight.Y <= 0 || bottomLeft.X <= 0 || bottomLeft.Y <= 0)
-			{
-				if (faceTexture != null)
-					output = faceTexture;
-				else
-				{
-					output = input2D;
-				}
-				return true;
-			}
+			if (topRight.X <= 0 || topRight.Y <= 0 || bottomLeft.X <= 0 || bottomLeft.Y <= 0) return true;
+
 			faceTexture = TrimmingTexture.Trim(new Vector2Int(topRight.X, topRight.Y), new Vector2Int(bottomLeft.X, bottomLeft.Y), input2D);
 			return true;
 		}
