@@ -4,7 +4,7 @@ using UnityEngine;
 using MyUtility;
 public class WarnningLevelmanager : MonoBehaviour
 {
-   
+    
     int WarnningLevel;
     void Start()
     {
