@@ -489,6 +489,9 @@ MonoBehaviour:
   - type: 2
     shader: {fileID: -6465566751694194690, guid: 3797e4388bf34cd448f4cbe062b102ac,
       type: 3}
+  - type: 3
+    shader: {fileID: -6465566751694194690, guid: a38cc54ab649cff48b0496c133b69a2e,
+      type: 3}
   rawImage: {fileID: 3746814912649484019}
 --- !u!114 &6384272194260629096
 MonoBehaviour:

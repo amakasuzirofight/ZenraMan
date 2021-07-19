@@ -7,6 +7,7 @@
             SimpleFade,
             BloodFade,
             PressureFade,
+            ScrollSwipe,
         }
     }
 }
