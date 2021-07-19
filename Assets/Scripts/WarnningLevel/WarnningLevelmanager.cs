@@ -13,7 +13,7 @@ namespace Zenra.WarnningManager
         void Start()
         {
             whenWarnningLevelUp = PlHitWCamera.GetComponent<IWhenWarnningLevelUp>();
-            PlHitWCamera.play
+            whenWarnningLevelUp.PlayerDiscoverEvent +=WarnningLevelUp;
             WarnningLevel = 0;
         }
 
@@ -21,7 +21,10 @@ namespace Zenra.WarnningManager
         {
 
         }
-
+        void WarnningLevelUp()
+        {
+            WarnningLevel++;
+        }
     }
 
 }
