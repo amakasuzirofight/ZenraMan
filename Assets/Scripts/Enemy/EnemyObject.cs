@@ -8,7 +8,7 @@ namespace Zenra
 {
     namespace Police
     {
-        public class EnemyObject : MonoBehaviour
+        public class EnemyObject : MonoBehaviour,IPoliceShot
         {
             [SerializeField] FlashLight lightOn;
             [Space(30)]
@@ -24,6 +24,9 @@ namespace Zenra
             Rigidbody2D rb;
             bool InShotLenge = false;//射程内にプレイヤーがいるかどうか
             Animator animator;
+
+            public event PoliceShot_delegate PoliceShotEvent;
+
             void Start()
             {
                 rb = GetComponent<Rigidbody2D>();
@@ -91,6 +94,8 @@ namespace Zenra
             bool isTurn = false;
             bool RandomLaunge = true;
             float rand;
+
+
             void MoveBase()
             {
                
@@ -152,7 +157,15 @@ namespace Zenra
                     enemyState = EnemyState.MOVE;
                 }
             }
-
+            public void ShotGun()
+            {
+                animator.SetTrigger("GunShotTrigger");
+            }
+            public void ShotgunEnd()
+            {
+                //イベント発行
+                PoliceShotEvent(transform.position.x);
+            }
             void ResetSpeed()
             {
                 speed = 0;
