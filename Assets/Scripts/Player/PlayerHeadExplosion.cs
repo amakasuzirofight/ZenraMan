@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenra.Police;
 
 namespace Zenra
 {
@@ -10,6 +11,11 @@ namespace Zenra
         {
             [SerializeField,Tooltip("吹き飛ぶ強さ")]
             float explosionPower = 10000.0f;
+
+            [SerializeField,Tooltip("警官射撃event")]
+            GameObject enemy;
+            
+
 
             private PlayerCore _playerCore = null;
             private Rigidbody2D rigidbody2D = null;
@@ -31,17 +37,23 @@ namespace Zenra
             {
                 // これじゃダメなんだけどどうすることもできなかった…
                 _playerDead = _playerCore.isDead;
-                if(_playerDead == true || once == false)
+                if(_playerDead == true && once == false)
                 {
                     Debug.Log("HeadExplosion");
                     HeadExplosion();
                 }
             }
 
+            void FixedUpdate() 
+            {
+                
+            }
+
             void HeadExplosion()
             {
                 rigidbody2D = this.gameObject.AddComponent<Rigidbody2D>();
                 rigidbody2D.AddForce(new Vector3(-10000.0f, 0.0f, 0.0f), ForceMode2D.Impulse);
+                once = true;
             }
         }
     }
