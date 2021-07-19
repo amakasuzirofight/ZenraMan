@@ -157,11 +157,11 @@ namespace Zenra
                     enemyState = EnemyState.MOVE;
                 }
             }
-            public void ShotGun()
+            public void ShotGun()//アニメーションイベント
             {
                 animator.SetTrigger("GunShotTrigger");
             }
-            public void ShotgunEnd()
+            public void ShotgunEnd()//アニメーションイベント
             {
                 //イベント発行
                 PoliceShotEvent(transform.position.x);

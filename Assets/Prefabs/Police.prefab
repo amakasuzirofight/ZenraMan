@@ -274,7 +274,7 @@ MonoBehaviour:
   lightOn: {fileID: 606119958509951280}
   lightHitObj: {fileID: 606119958509951277}
   moveLenghTime: 2.15
-  speed: 3
+  speed: 30
 --- !u!50 &606119959863288975
 Rigidbody2D:
   serializedVersion: 4
