@@ -9,7 +9,7 @@ namespace Zenra
     {
         public class PlayerMove : MonoBehaviour, IActionClimb
         {
-            [SerializeField, Range(0, 50)]//0から50までの値をインスペクターでいじれるようになる
+            [SerializeField]//0から50までの値をインスペクターでいじれるようになる
             private float _speed = 0;
             private IInputer _input = new NullInputer();//iinputerを作成　何も値入ってない
             private Rigidbody2D _rb2d = null;//ADDforce用RB

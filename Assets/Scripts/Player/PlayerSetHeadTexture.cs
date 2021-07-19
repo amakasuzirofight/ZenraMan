@@ -12,12 +12,15 @@ namespace Zenra
             [SerializeField, Tooltip("顔に貼るテクスチャ")]
             RawImage rawImage;
 
+            
+
             // private const float setTextureYPos = 10.0f;     // 顔面テクスチャをいい感じの場所に移動させる
 
             void Start()
             {
+                    
                 // テクスチャを入れる
-                //rawImage.texture = 
+                rawImage.texture = MyUtility.Locator<Texture2D>.GetT();
                 // rawImage.transform.position = new Vector3(0.0f, setTextureYPos, 0.0f);
             }
 
