@@ -44,7 +44,6 @@ namespace MyUtility
             Locator<IObjectExecutable>.Bind(playerGimmickActivate, 0);
             Locator<IObjectExecutable>.Bind(playerClimb, 1);
 
-            Locator<IPlayerOn>.Bind(new WarningCamera(), 0);
 
         }
     }
