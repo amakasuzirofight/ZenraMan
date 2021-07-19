@@ -1,13 +1,16 @@
 using System;
 using UnityEngine;
-public interface IWhenPlayerHitCamera
+namespace Zenra.WarnningCamera
 {
-    GameObject GetObj();
-}
-public static class IWhenPlayerHitCameraExpansion
-{
-    public static void GoEventHitCamera(this IWhenPlayerHitCamera whenPlayerHitCamera, object p)
+    public interface IWhenPlayerHitCamera
     {
-        whenPlayerHitCamera.GetObj().GetComponent<CameraLightHit>();
+        GameObject GetObj();
+    }
+    public static class IWhenPlayerHitCameraExpansion
+    {
+        public static void GoEventHitCamera(this IWhenPlayerHitCamera whenPlayerHitCamera, object p)
+        {
+            whenPlayerHitCamera.GetObj().GetComponent<CameraLightHit>();
+        }
     }
 }
