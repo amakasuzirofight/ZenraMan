@@ -146,6 +146,11 @@ namespace Zenra
                 _isHide = !_isHide;
                 _isUseGimmick = !_isUseGimmick;
             }
+
+            void IChangeVariableGimmick.SetCold(int coldAmount)
+            {
+                _hp -= coldAmount;
+            }
         }
     }
 }
