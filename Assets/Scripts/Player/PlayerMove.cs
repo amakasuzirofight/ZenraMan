@@ -89,8 +89,6 @@ namespace Zenra
                 {
                     _animator.SetBool("Climb", false);
                 }
-
-                
             }
 
             private void FixedUpdate()

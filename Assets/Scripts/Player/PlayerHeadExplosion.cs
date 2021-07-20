@@ -58,15 +58,10 @@ namespace Zenra
                 }
             }
 
-            void FixedUpdate() 
-            {
-                
-            }
-
             void HeadExplosion()
             {
                 rigidbody2D = this.gameObject.AddComponent<Rigidbody2D>();
-                rigidbody2D.AddForce(new Vector3(dir * explosionPower, 0.0f, 0.0f), ForceMode2D.Impulse);
+                rigidbody2D.AddForce(new Vector3(dir * explosionPower, explosionPower / 5.0f, 0.0f), ForceMode2D.Impulse);
                 Debug.Log("HeadExplosion");
                 once = true;
             }
@@ -84,6 +79,14 @@ namespace Zenra
                 {
                     // (プレイヤー) - (エネミー)がプラスなら頭を左に吹き飛ぶためにdirを「ー」にする。
                     dir = -1.0f;
+                }
+            }
+
+            private void OnTriggerEnter2D(Collider2D other) 
+            {
+                if(other.GetComponent<> != null)
+                {
+                    
                 }
             }
         }
