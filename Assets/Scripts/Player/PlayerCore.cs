@@ -157,7 +157,14 @@ namespace Zenra
             void IChangeVariableGimmick.SetHealToHp(int healAmount)
             {
                 Debug.Log("回復");
-                HP = healAmount;
+                if (HP + healAmount > MAX_HP)
+                {
+                    HP = MAX_HP;
+                }
+                else
+                {
+                    HP += healAmount;
+                }
             }
 
             void IChangeVariableGimmick.SetIsHide()
