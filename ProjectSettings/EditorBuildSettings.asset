@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ShibataScene.unity
     guid: 5c00694b58242474c977af5e1ef0d825
+  - enabled: 1
+    path: Assets/Scenes/Stages/KatoMountain.unity
+    guid: dffeeee793c39434da0e74956012a959
+  - enabled: 1
+    path: Assets/Scenes/Stages/AmaMountain 1.unity
+    guid: 2c1420a8e32d6984c976601a1e907b68
   m_configObjects: {}

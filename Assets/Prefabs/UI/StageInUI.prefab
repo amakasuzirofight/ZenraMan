@@ -404,8 +404,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u9069\u6E29"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8da571c67f831964f882e203cfed7e93, type: 2}
-  m_sharedMaterial: {fileID: 4737924984022620966, guid: 8da571c67f831964f882e203cfed7e93,
+  m_fontAsset: {fileID: 11400000, guid: 9688446ce83281f4a883188ec4e10193, type: 2}
+  m_sharedMaterial: {fileID: 4737924984022620966, guid: 9688446ce83281f4a883188ec4e10193,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -430,8 +430,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.9
-  m_fontSizeBase: 28.9
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

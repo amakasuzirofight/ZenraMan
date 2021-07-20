@@ -4,8 +4,8 @@ namespace Zenra
     {
         public enum StageName
         {
-            Mountain = 01,
-
+            KatoMountain = 01,
+            AmaMountain = 02,
         }
     }
 }
