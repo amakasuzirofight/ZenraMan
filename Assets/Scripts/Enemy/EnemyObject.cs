@@ -58,6 +58,7 @@ namespace Zenra
             private void FixedUpdate()
             {
                 ActJudge(enemyState);
+                ActJudge(enemyState);
             }
             public void ActJudge(EnemyState enemystate)
             {
@@ -71,17 +72,17 @@ namespace Zenra
                         {
                             animator.SetBool("ChangeGunFlg", true);
                         }
-                        else
-                        {
-                            animator.SetBool("ChangeGunFlg", false);
-                        }
+                        //else
+                        //{
+                        //    animator.SetBool("ChangeGunFlg", false);
+                        //}
                         break;
                     case EnemyState.SHOT:
                         animator.SetTrigger("GunShotTrigger");
 
                         break;
                     case EnemyState.MOVE:
-                        animator.SetBool("ChangeGunFlg", false);
+                        
                         MoveBase();
                         break;
 
@@ -154,8 +155,12 @@ namespace Zenra
                 }
                 else
                 {
-                    enemyState = EnemyState.MOVE;
+                    animator.SetBool("ChangeGunFlg", false);
                 }
+            }
+            public void  EndChangeWeponMortion()//アニメーションイベント
+            {
+                animator.SetTrigger("NormalRunTrigger");
             }
             public void ShotGun()//アニメーションイベント
             {
