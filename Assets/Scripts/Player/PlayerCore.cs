@@ -11,7 +11,21 @@ namespace Zenra
     {
         public class PlayerCore : IClimbable, IItemUsable, IChangeVariableGimmick, IColder
         {
-            private int _hp; //_で変数名を決めておけば_で予測変換が使いやすい　privateで使用されたし
+            public Action<int> HpChangeAction;
+            private int _hp;
+            private int HP 
+            { 
+                get
+                {
+                    return _hp;
+                }
+                set
+                {
+                    if (_hp == value) return;
+                    _hp = value;
+                    HpChangeAction(_hp);
+                }
+            } //_で変数名を決めておけば_で予測変換が使いやすい　privateで使用されたし
             private List<ItemName> _itemList;
             const int ITEM_LIST_LENGH = 1; //アイテムはひとつしか持てない
             const int MAX_HP = 300;
@@ -34,7 +48,7 @@ namespace Zenra
                 _isUseGimmick = false;
                 _isClimb = false;
                 _isDead = false;
-                _hp = MAX_HP;
+                HP = MAX_HP;
                 _itemList = new List<ItemName>(ITEM_LIST_LENGH);
                 _isHideChange = MyUtility.Locator<IIsHideChange>.GetT();//myUtilityとはnamespace名　こういう書き方もできる
                 _hpMaxHeal = MyUtility.Locator<IHpMaxHeal>.GetT();
@@ -81,7 +95,7 @@ namespace Zenra
 
             public void PlayerKill()
             {
-                _hp = 0;
+                HP = 0;
                 _isDead = true;
                 Debug.Log("死んだ");
             }
@@ -96,14 +110,14 @@ namespace Zenra
             private void HpHealMax()
             {
                 Debug.Log("全回復");
-                _hp = MAX_HP;
+                HP = MAX_HP;
             }
 
             private void HpHealSmall()
             {
                 const int HEAL_AMOUNT = 100;
                 Debug.Log("回復");
-                _hp += HEAL_AMOUNT;
+                HP += HEAL_AMOUNT;
             }
 
             void IClimbable.CanClimb()
@@ -136,13 +150,13 @@ namespace Zenra
 
             void IChangeVariableGimmick.SetHealToHp()
             {
-                _hp = MAX_HP;
+                HP = MAX_HP;
             }
 
             void IChangeVariableGimmick.SetHealToHp(int healAmount)
             {
                 Debug.Log("回復");
-                _hp = healAmount;
+                HP = healAmount;
             }
 
             void IChangeVariableGimmick.SetIsHide()
@@ -153,12 +167,12 @@ namespace Zenra
 
             void IChangeVariableGimmick.SetCold(int coldAmount)
             {
-                _hp -= coldAmount;
+                HP -= coldAmount;
             }
 
             void IColder.SubTemperature(int num)
             {
-                _hp -= num;
+                HP -= num;
             }
         }
     }
