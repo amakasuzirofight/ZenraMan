@@ -17,14 +17,14 @@ namespace Zenra
             {
                 gimmickAction = touchObj.GetComponent<IGimmickAction>();
             }
-            
+
             public void ExitAction(GameObject touchObj)
             {
                 if (gimmickAction != touchObj.GetComponent<IGimmickAction>()) return;
                 gimmickAction = nullObject;
             }
 
-            public void Execute()
+            public void Execute(Animator animator)
             {
                 gimmickAction ??= nullObject;
                 if (gimmickAction == nullObject) return;
@@ -44,7 +44,14 @@ namespace Zenra
                             Debug.LogError("Null");
                             break;
                         case GimmickType.HIDE:
-                            Debug.Log("Hide");
+                            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Squat"))
+                            {
+                                animator.SetTrigger("StandUp");
+                            }
+                            else
+                            {
+                                animator.SetTrigger("Squat");
+                            }
                             changeVariableGimmick.SetIsHide();
                             break;
                         case GimmickType.SAVE:
