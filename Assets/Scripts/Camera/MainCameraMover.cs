@@ -39,4 +39,9 @@ public class MainCameraMover : MonoBehaviour
         temp.y = Clamp(temp.y, minYPos, maxYPos);
         camera.position = temp;
     }
+
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
+    }
 }

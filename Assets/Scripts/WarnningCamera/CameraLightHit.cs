@@ -9,6 +9,12 @@ namespace Zenra.WarnningCamera
     {
         //public event PlayerDiscover PlayerDiscoverEvent;
         bool hitFlg;
+
+        public void IsDiscoverZenra()
+        {
+            
+        }
+
         // Start is called before the first frame update
         void Start()
         {

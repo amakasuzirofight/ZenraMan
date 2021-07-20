@@ -9,7 +9,7 @@ namespace Zenra
 {
     namespace Police
     {
-        public class EnemyObject : MonoBehaviour,IPoliceShot
+        public class EnemyObject : MonoBehaviour
         {
             [SerializeField] GameObject lightHitObj;
             ILightHit lightHit;
@@ -177,8 +177,7 @@ namespace Zenra
             }
             public void ShotgunEnd()//アニメーションイベント
             {
-                //イベント発行
-                PoliceShotEvent(transform.position.x);
+                
             }
             public void SHotEff()//アニメーションイベント
             {
