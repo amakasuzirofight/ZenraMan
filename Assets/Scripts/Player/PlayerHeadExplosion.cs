@@ -51,7 +51,7 @@ namespace Zenra
                         // 正直Event生やしたい
                         if(playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.4f)
                         {
-                            Debug.Log("HeadExplosion");
+                            
                             HeadExplosion();
                         }
                     }
@@ -66,7 +66,8 @@ namespace Zenra
             void HeadExplosion()
             {
                 rigidbody2D = this.gameObject.AddComponent<Rigidbody2D>();
-                rigidbody2D.AddForce(new Vector3(dir * 10000.0f, 0.0f, 0.0f), ForceMode2D.Impulse);
+                rigidbody2D.AddForce(new Vector3(dir * explosionPower, 0.0f, 0.0f), ForceMode2D.Impulse);
+                Debug.Log("HeadExplosion");
                 once = true;
             }
 
