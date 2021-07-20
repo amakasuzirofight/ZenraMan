@@ -30,7 +30,6 @@ namespace Zenra
             {
                 _playerCore = MyUtility.Locator<PlayerCore>.GetT();
                 _IPoliceShot = enemy.GetComponent<IPoliceShot>();
-                Debug.Log(_IPoliceShot);
                 enemy.GetComponent<EnemyObject>().PoliceShotEvent += EnemyShot;
             }
 
