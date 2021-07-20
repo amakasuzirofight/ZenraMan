@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour,IShotable
     void Start()
     {
         PlPosx = GameObject.Find("ZenraMan").transform.position.x;
-        if(transform.position.x<=PlPosx)
+        if(transform.position.x>=PlPosx)
         {
             speed *= -1;
         }
@@ -19,6 +19,6 @@ public class Bullet : MonoBehaviour,IShotable
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(transform.position.x + speed, transform.position.y, 0);
+        transform.position = new Vector3((transform.position.x + speed), transform.position.y, 0)  ;
     }
 }
