@@ -56,7 +56,7 @@ namespace Zenra
                                 spriteRenderer.sortingLayerName = "Ground";
                                 canvas.sortingLayerName = "Ground";
                                 animator.SetTrigger("Squat");
-                                boxCollider2D.enabled = false;
+                                boxCollider2D.enabled = true;
                             }
                             changeVariableGimmick.SetIsHide();
                             break;

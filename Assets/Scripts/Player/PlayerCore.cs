@@ -32,6 +32,7 @@ namespace Zenra
             public const int ITEM_LIST_LENGH = 1; //アイテムはひとつしか持てない
             public const int MAX_HP = 300;
             private bool _isHide; //かくれているかどうか
+            public bool IsHide { get { return _isHide; } } //かくれているかどうか
             private bool _isUseItem; // アイテムを使用しているかどうか(隠れるのみならば_isHideと同義)
             private bool _isUseGimmick;
             private bool _isClimb; // はしごに登ってるかどうか
