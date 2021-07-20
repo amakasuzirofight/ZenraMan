@@ -5,14 +5,17 @@ using MyUtility;
 using Zenra.WarnningCamera;
 namespace Zenra.WarnningManager
 {
-    public class WarnningLevelmanager : MonoBehaviour
+    public class WarnningLevelmanager : MonoBehaviour,IPoliceSporn
     {
-        [SerializeField] GameObject PlHitWCamera;
+        [SerializeField] GameObject PlayerObj;
         IWhenWarnningLevelUp whenWarnningLevelUp;
         int WarnningLevel;
+
+        public event SpornDe SpornEve;
+
         void Start()
         {
-            whenWarnningLevelUp = PlHitWCamera.GetComponent<IWhenWarnningLevelUp>();
+            whenWarnningLevelUp = PlayerObj.GetComponent<IWhenWarnningLevelUp>();
             whenWarnningLevelUp.PlayerDiscoverEvent +=WarnningLevelUp;
             WarnningLevel = 0;
         }
@@ -21,10 +24,12 @@ namespace Zenra.WarnningManager
         {
 
         }
-        void WarnningLevelUp()
+        public void WarnningLevelUp()
         {
             WarnningLevel++;
+
         }
+        
     }
 
 }
