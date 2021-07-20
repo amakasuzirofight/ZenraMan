@@ -12,9 +12,6 @@ namespace Zenra
             [SerializeField,Tooltip("吹き飛ぶ強さ")]
             float explosionPower = 10000.0f;
 
-            [SerializeField,Tooltip("警官射撃event")]
-            GameObject enemy;
-
             [SerializeField, Tooltip("プレイヤーAnimator")]
             Animator playerAnimator;
             
@@ -29,8 +26,8 @@ namespace Zenra
             void Awake() 
             {
                 _playerCore = MyUtility.Locator<PlayerCore>.GetT();
-                _IPoliceShot = enemy.GetComponent<IPoliceShot>();
-                enemy.GetComponent<EnemyObject>().PoliceShotEvent += EnemyShot;
+
+                Debug.Log(_IPoliceShot);
             }
 
             void Start()
@@ -58,15 +55,10 @@ namespace Zenra
                 }
             }
 
-            void FixedUpdate() 
-            {
-                
-            }
-
             void HeadExplosion()
             {
                 rigidbody2D = this.gameObject.AddComponent<Rigidbody2D>();
-                rigidbody2D.AddForce(new Vector3(dir * explosionPower, 0.0f, 0.0f), ForceMode2D.Impulse);
+                rigidbody2D.AddForce(new Vector3(dir * explosionPower, explosionPower / 5.0f, 0.0f), ForceMode2D.Impulse);
                 Debug.Log("HeadExplosion");
                 once = true;
             }
@@ -84,6 +76,14 @@ namespace Zenra
                 {
                     // (プレイヤー) - (エネミー)がプラスなら頭を左に吹き飛ぶためにdirを「ー」にする。
                     dir = -1.0f;
+                }
+            }
+
+            private void OnTriggerEnter2D(Collider2D other) 
+            {
+                if(other.GetComponent<IShotable>() != null)
+                {
+                    _playerCore.PlayerKill();
                 }
             }
         }
