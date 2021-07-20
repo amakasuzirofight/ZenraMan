@@ -21,6 +21,8 @@ namespace Zenra
             SpriteRenderer spriteRenderer;
             [SerializeField]
             Canvas canvas;
+            [SerializeField]
+            BoxCollider2D boxCollider2D;
 
             public enum ExecutableId
             {
@@ -41,11 +43,11 @@ namespace Zenra
             {
                 if (_inputer.IsGimmickActivateButtonDown())
                 {
-                    _gimmickExecutable?.Execute(Animator, spriteRenderer,canvas);
+                    _gimmickExecutable?.Execute(Animator, spriteRenderer,canvas, boxCollider2D);
                 }
                 if (_inputer.IsLadderClimbButtonDown())
                 {
-                    _ladderExecutable?.Execute(Animator, spriteRenderer,canvas);
+                    _ladderExecutable?.Execute(Animator, spriteRenderer,canvas, boxCollider2D);
                 }
             }
             private void OnTriggerEnter2D(Collider2D collision)
