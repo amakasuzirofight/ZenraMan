@@ -24,7 +24,7 @@ namespace Zenra
                 gimmickAction = nullObject;
             }
 
-            public void Execute(Animator animator, SpriteRenderer spriteRenderer,Canvas canvas)
+            public void Execute(Animator animator, SpriteRenderer spriteRenderer,Canvas canvas,BoxCollider2D boxCollider2D)
             {
                 gimmickAction ??= nullObject;
                 if (gimmickAction == nullObject) return;
@@ -49,12 +49,14 @@ namespace Zenra
                                 spriteRenderer.sortingLayerName = "Character";
                                 canvas.sortingLayerName = "Character";
                                 animator.SetTrigger("StandUp");
+                                boxCollider2D.enabled = true;
                             }
                             else
                             {
                                 spriteRenderer.sortingLayerName = "Ground";
                                 canvas.sortingLayerName = "Ground";
                                 animator.SetTrigger("Squat");
+                                boxCollider2D.enabled = false;
                             }
                             changeVariableGimmick.SetIsHide();
                             break;

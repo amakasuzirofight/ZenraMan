@@ -5,7 +5,10 @@ namespace Zenra
     {
         interface IObjectExecutable
         {
-            void Execute(Animator animator,SpriteRenderer spriteRenderer,Canvas canvas);
+            void Execute(Animator animator
+                ,SpriteRenderer spriteRenderer
+                ,Canvas canvas
+                ,BoxCollider2D boxCollider2D);
         }
     }
 }
