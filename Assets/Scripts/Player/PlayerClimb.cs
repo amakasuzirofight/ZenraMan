@@ -102,7 +102,7 @@ namespace Zenra
                 //_actionClimb.actionClimb(false);
             }
 
-            public void Execute()
+            public void Execute(Animator animator)
             {
                 if (_sendLadderPos != null && climbing == false)
                 {

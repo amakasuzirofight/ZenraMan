@@ -14,8 +14,9 @@ namespace Zenra
 
             [SerializeField, Tooltip("プレイヤーAnimator")]
             Animator playerAnimator;
-            
-            private IPoliceShot _IPoliceShot;
+
+            [SerializeField, Tooltip("プレイヤーの頭のキャンバス")]
+            GameObject playerHead;
 
             private PlayerCore _playerCore = null;
             private Rigidbody2D rigidbody2D = null;
@@ -26,7 +27,6 @@ namespace Zenra
             void Awake() 
             {
                 _playerCore = MyUtility.Locator<PlayerCore>.GetT();
-                Debug.Log(_IPoliceShot);
             }
 
             void Start()
@@ -55,34 +55,47 @@ namespace Zenra
 
             void HeadExplosion()
             {
-                rigidbody2D = this.gameObject.AddComponent<Rigidbody2D>();
-                rigidbody2D.AddForce(new Vector3(dir * explosionPower, explosionPower / 5.0f, 0.0f), ForceMode2D.Impulse);
+                rigidbody2D = playerHead.AddComponent<Rigidbody2D>();
+                rigidbody2D.AddForce(new Vector3(dir * explosionPower, 0.0f, 0.0f), ForceMode2D.Impulse);
                 Debug.Log("HeadExplosion");
                 once = true;
             }
 
-            void EnemyShot(float enemyPos)
-            {
-                Debug.Log("EnemyShot");
-                float d = enemyPos - this.transform.position.x;
-                if(d < 0.0f)
-                {
-                    // (プレイヤー) - (エネミー)がマイナスなら頭を右に吹き飛ぶためにdirを「＋」にする。
-                    dir = 1.0f;
-                }
-                else
-                {
-                    // (プレイヤー) - (エネミー)がプラスなら頭を左に吹き飛ぶためにdirを「ー」にする。
-                    dir = -1.0f;
-                }
-            }
+            // void EnemyShot(float enemyPos)
+            // {
+            //     Debug.Log("EnemyShot");
+            //     float d = enemyPos - this.transform.position.x;
+            //     if(d < 0.0f)
+            //     {
+            //         // (プレイヤー) - (エネミー)がマイナスなら頭を右に吹き飛ぶためにdirを「＋」にする。
+            //         dir = 1.0f;
+            //     }
+            //     else
+            //     {
+            //         // (プレイヤー) - (エネミー)がプラスなら頭を左に吹き飛ぶためにdirを「ー」にする。
+            //         dir = -1.0f;
+            //     }
+            // }
 
             private void OnTriggerEnter2D(Collider2D other) 
             {
                 if(other.GetComponent<IShotable>() != null)
                 {
-                    _playerCore.PlayerKill();
+                    // _playerCore.PlayerKill();
                     Debug.Log("Hit");
+                    float d = other.transform.position.x - this.transform.transform.position.x;
+                    if(d < 0.0f)
+                    {
+                        
+                        dir = 1.0f;
+                    }
+                    else
+                    {
+                        
+                        dir = -1.0f;
+                    }
+
+                    HeadExplosion();
                 }
             }
         }
