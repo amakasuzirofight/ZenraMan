@@ -1025,14 +1025,7 @@ MonoBehaviour:
   menu: {fileID: 2115271301}
   stageInfoView: {fileID: 20448946}
   elementDatas:
-  - {fileID: 11400000, guid: 0928bf38f4d354248ad4a4add9994de6, type: 2}
-  - {fileID: 11400000, guid: 0928bf38f4d354248ad4a4add9994de6, type: 2}
-  - {fileID: 11400000, guid: 0928bf38f4d354248ad4a4add9994de6, type: 2}
-  - {fileID: 11400000, guid: 0928bf38f4d354248ad4a4add9994de6, type: 2}
-  - {fileID: 11400000, guid: 0928bf38f4d354248ad4a4add9994de6, type: 2}
-  - {fileID: 11400000, guid: 0928bf38f4d354248ad4a4add9994de6, type: 2}
-  - {fileID: 11400000, guid: 0928bf38f4d354248ad4a4add9994de6, type: 2}
-  - {fileID: 11400000, guid: 0928bf38f4d354248ad4a4add9994de6, type: 2}
+  - {fileID: 11400000, guid: aa83b3ceb6ec405409f5ebdf5ad43139, type: 2}
   - {fileID: 11400000, guid: 0928bf38f4d354248ad4a4add9994de6, type: 2}
 --- !u!4 &1638015696
 Transform:
