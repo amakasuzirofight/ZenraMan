@@ -24,7 +24,7 @@ namespace Zenra
                 _playerKill = collision.gameObject.GetComponent<IPlayerKill>();
                 if (_playerKill != null)
                 {
-                    _playerKill.PlayerKill();
+                    //_playerKill.PlayerKill();
                     LightHitEvent();
                 }
             }
@@ -33,7 +33,7 @@ namespace Zenra
                 var tempPlayerKill = collision.gameObject.GetComponent<IPlayerKill>();
                 if (_playerKill != tempPlayerKill) return;
                 LightExitEvent();
-                _playerKill = _dummy;
+                //_playerKill = _dummy;
             }
         }
     }
