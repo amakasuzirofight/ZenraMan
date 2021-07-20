@@ -23,13 +23,12 @@ namespace Zenra
                 {
                     if (_hp == value) return;
                     _hp = value;
-                    if (HpChangeAction == null) HpChangeAction += _ => Debug.LogWarning(_ + "nullEvent");
-                    HpChangeAction(_hp);
+                    HpChangeAction?.Invoke(_hp);
                 }
             } //_で変数名を決めておけば_で予測変換が使いやすい　privateで使用されたし
             private List<ItemName> _itemList;
-            const int ITEM_LIST_LENGH = 1; //アイテムはひとつしか持てない
-            const int MAX_HP = 300;
+            public const int ITEM_LIST_LENGH = 1; //アイテムはひとつしか持てない
+            public const int MAX_HP = 300;
             private bool _isHide; //かくれているかどうか
             private bool _isUseItem; // アイテムを使用しているかどうか(隠れるのみならば_isHideと同義)
             private bool _isUseGimmick;
