@@ -1,11 +1,11 @@
-
+using UnityEngine;
 namespace Zenra
 {
     namespace Player
     {
         interface IObjectExecutable
         {
-            void Execute(UnityEngine.Animator animator);
+            void Execute(Animator animator,SpriteRenderer spriteRenderer,Canvas canvas);
         }
     }
 }

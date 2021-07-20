@@ -24,7 +24,7 @@ namespace Zenra
                 gimmickAction = nullObject;
             }
 
-            public void Execute(Animator animator)
+            public void Execute(Animator animator, SpriteRenderer spriteRenderer,Canvas canvas)
             {
                 gimmickAction ??= nullObject;
                 if (gimmickAction == nullObject) return;
@@ -46,10 +46,14 @@ namespace Zenra
                         case GimmickType.HIDE:
                             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Squat"))
                             {
+                                spriteRenderer.sortingLayerName = "Character";
+                                canvas.sortingLayerName = "Character";
                                 animator.SetTrigger("StandUp");
                             }
                             else
                             {
+                                spriteRenderer.sortingLayerName = "Ground";
+                                canvas.sortingLayerName = "Ground";
                                 animator.SetTrigger("Squat");
                             }
                             changeVariableGimmick.SetIsHide();

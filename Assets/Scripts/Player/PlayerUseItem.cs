@@ -14,6 +14,8 @@ namespace Zenra
             private PlayerCore _core = null;
             private IInputer _input = new NullInputer();
             private IUseItem _useItem = new NullUseItem();
+            [SerializeField]
+            Animator animator;
             void Start()
             {
                 _input = MyUtility.Locator<IInputer>.GetT();
@@ -29,6 +31,7 @@ namespace Zenra
                 {
                     if (_core.GetIsUseItem())
                     {
+                        animator.SetTrigger("TakeDown");
                         _itemUsable.FinishUseItem();
                     }
                     bool isUseItem = !_core.GetIsUseItem() && _core.IsRetentionItem();
@@ -42,6 +45,7 @@ namespace Zenra
             private void UseItemToAction()
             {
                 UseItemDS useItemDS = new UseItemDS(_core.UseItem());
+                animator.SetTrigger("Lift");
                 _useItem.ItemAct(useItemDS);
             }
 

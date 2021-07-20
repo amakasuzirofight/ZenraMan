@@ -17,6 +17,10 @@ namespace Zenra
             private IInputer _inputer = new NullInputer();
             [SerializeField]
             Animator Animator;
+            [SerializeField]
+            SpriteRenderer spriteRenderer;
+            [SerializeField]
+            Canvas canvas;
 
             public enum ExecutableId
             {
@@ -37,11 +41,11 @@ namespace Zenra
             {
                 if (_inputer.IsGimmickActivateButtonDown())
                 {
-                    _gimmickExecutable?.Execute(Animator);
+                    _gimmickExecutable?.Execute(Animator, spriteRenderer,canvas);
                 }
                 if (_inputer.IsLadderClimbButtonDown())
                 {
-                    _ladderExecutable?.Execute(Animator);
+                    _ladderExecutable?.Execute(Animator, spriteRenderer,canvas);
                 }
             }
             private void OnTriggerEnter2D(Collider2D collision)
