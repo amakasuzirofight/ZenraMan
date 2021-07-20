@@ -177,7 +177,6 @@ namespace Zenra
             }
             public void ShotgunEnd()//アニメーションイベント
             {
-                Debug.Log(PoliceShotEvent);
                 //イベント発行
                 PoliceShotEvent(transform.position.x);
             }
