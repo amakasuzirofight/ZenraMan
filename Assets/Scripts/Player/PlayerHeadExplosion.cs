@@ -64,8 +64,8 @@ namespace Zenra
                 if(other.GetComponent<IShotable>() != null)
                 {
                     _playerCore.PlayerKill();
-                    playerAnimator.SetTrigger("Dead");
-                    Debug.Log("Hit");
+                    
+                    // Debug.Log("Hit");
                     float d = other.transform.position.x - this.transform.transform.position.x;
                     if(d < 0.0f)
                     {
@@ -75,11 +75,8 @@ namespace Zenra
                     {
                         dir = -1.0f;
                     }
-
-                    
                     dead = true;
-
-
+                    playerAnimator.SetTrigger("Dead");
                 }
             }
         }
