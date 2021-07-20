@@ -9,7 +9,7 @@ namespace Zenra
 {
     namespace Player
     {
-        public class PlayerCore : IClimbable, IItemUsable, IChangeVariableGimmick, IColder
+        public class PlayerCore : IClimbable, IItemUsable, IChangeVariableGimmick, IColder, IPlayerMoveStateGet
         {
             public Action<int> HpChangeAction;
             private int _hp;
@@ -23,6 +23,7 @@ namespace Zenra
                 {
                     if (_hp == value) return;
                     _hp = value;
+                    if (HpChangeAction == null) HpChangeAction += _ => Debug.LogWarning(_ + "nullEvent");
                     HpChangeAction(_hp);
                 }
             } //_で変数名を決めておけば_で予測変換が使いやすい　privateで使用されたし
@@ -173,6 +174,13 @@ namespace Zenra
             void IColder.SubTemperature(int num)
             {
                 HP -= num;
+            }
+
+            bool IPlayerMoveStateGet.IsMove()
+            {
+                if (_isDead) return false;
+                if (_isUseGimmick) return false;
+                return false;
             }
         }
     }
