@@ -12,9 +12,6 @@ namespace Zenra
             [SerializeField,Tooltip("吹き飛ぶ強さ")]
             float explosionPower = 10000.0f;
 
-            [SerializeField,Tooltip("警官射撃event")]
-            GameObject enemy;
-
             [SerializeField, Tooltip("プレイヤーAnimator")]
             Animator playerAnimator;
             
@@ -29,8 +26,8 @@ namespace Zenra
             void Awake() 
             {
                 _playerCore = MyUtility.Locator<PlayerCore>.GetT();
-                _IPoliceShot = enemy.GetComponent<IPoliceShot>();
-                enemy.GetComponent<EnemyObject>().PoliceShotEvent += EnemyShot;
+
+                Debug.Log(_IPoliceShot);
             }
 
             void Start()
@@ -84,9 +81,9 @@ namespace Zenra
 
             private void OnTriggerEnter2D(Collider2D other) 
             {
-                if(other.GetComponent<> != null)
+                if(other.GetComponent<IShotable>() != null)
                 {
-                    
+                    _playerCore.PlayerKill();
                 }
             }
         }
