@@ -382,12 +382,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930fe9fce38229540a9bb8414e6cd355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 3746814913400883447}
   target: {fileID: 0}
   xOffset: 0
-  yOffset: 0
-  maxXPos: 0
+  yOffset: 35
+  maxXPos: 1000
   minXPos: 0
-  maxYPos: 0
+  maxYPos: 1000
   minYPos: 0
 --- !u!114 &3746814912739093285
 MonoBehaviour:
@@ -461,7 +462,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3746814913400883447}
   - component: {fileID: 593433436383923997}
-  - component: {fileID: 6384272194260629096}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -513,16 +513,3 @@ MonoBehaviour:
     shader: {fileID: -6465566751694194690, guid: a38cc54ab649cff48b0496c133b69a2e,
       type: 3}
   rawImage: {fileID: 3746814912649484019}
---- !u!114 &6384272194260629096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3746814913400883444}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10f199bdb3a9e9644a14dd06b18ead94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3

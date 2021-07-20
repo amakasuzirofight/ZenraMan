@@ -16,7 +16,7 @@ namespace Zenra
                 colder = Locator<PlayerCore>.GetT();
                 while (true)
                 {
-                    yield return new WaitForSeconds(2f);
+                    yield return new WaitForSeconds(0.1f);
                     colder.SubTemperature(1);
                 }
             }
