@@ -22,7 +22,7 @@ namespace Zenra.Player
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.GetComponent<IIsWarnningCamera>() != null)
+            if (collision.gameObject.GetComponent<IIsWarnningCamera>() != null)//ƒJƒƒ‰‚¾‚Á‚½‚ç
             {
                 PlayerDiscoverEvent();
             }
