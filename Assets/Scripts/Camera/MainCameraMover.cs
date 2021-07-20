@@ -6,21 +6,21 @@ using static UnityEngine.Mathf;
 public class MainCameraMover : MonoBehaviour
 {
     [SerializeField]
-    Transform camera;
+    Transform camera = null;
     [SerializeField]
-    Transform target;
+    Transform target = null;
     [SerializeField]
-    float xOffset;
+    float xOffset = 0;
     [SerializeField]
-    float yOffset;
+    float yOffset = 0;
     [SerializeField]
-    float maxXPos;
+    float maxXPos = 0;
     [SerializeField]
-    float minXPos;
+    float minXPos = 0;
     [SerializeField]
-    float maxYPos;
+    float maxYPos = 0;
     [SerializeField]
-    float minYPos;
+    float minYPos = 0;
     void Start()
     {
         if (camera == null)
@@ -32,6 +32,7 @@ public class MainCameraMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (target == null) return;
         var temp = target.position;
         temp.x += xOffset;
         temp.y += yOffset;
@@ -43,5 +44,23 @@ public class MainCameraMover : MonoBehaviour
     public void SetTarget(Transform target)
     {
         this.target = target;
+    }
+
+    public void SetOffset(float x, float y)
+    {
+        xOffset = x;
+        yOffset = y;
+    }
+
+    public void SetMinPos(float x, float y)
+    {
+        minXPos = x;
+        minYPos = y;
+    }
+
+    public void SetMaxPos(float x, float y)
+    {
+        maxXPos = x;
+        maxYPos = y;
     }
 }
