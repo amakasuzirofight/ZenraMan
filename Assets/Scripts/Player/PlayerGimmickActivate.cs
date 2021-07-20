@@ -35,7 +35,7 @@ namespace Zenra
                 {
                     changeVariableGimmick = MyUtility.Locator<IChangeVariableGimmick>.GetT();
                 }
-                // ‚±‚±‚Éƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Ìˆ—
+                // ï¿½ï¿½ï¿½ï¿½ï¿½Éƒ{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
                 foreach (var item in GimmickTypeList)
                 {
                     switch (item)
@@ -65,7 +65,7 @@ namespace Zenra
                             break;
                         case GimmickType.HEAL:
                             Debug.Log("Heal");
-                            changeVariableGimmick.SetHealToHp(1);
+                            changeVariableGimmick.SetHealToHp(200);
                             break;
                         case GimmickType.COLD:
                             Debug.Log("Cold");
