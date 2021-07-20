@@ -2,10 +2,9 @@ namespace Zenra
 {
     namespace Player
     {
-
-        interface IColder
+        interface IPlayerMoveStateGet
         {
-            void SubTemperature(int num);
+            bool IsMove();
         }
     }
 }

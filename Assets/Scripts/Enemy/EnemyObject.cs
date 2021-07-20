@@ -19,6 +19,7 @@ namespace Zenra
             [ContextMenuItem("Reset", "ResetSpeed")]
             [SerializeField]
             float speed;
+            [SerializeField] GameObject ShotEffect;
             float timecount;
             EnemyState enemyState = EnemyState.MOVE;
             Rigidbody2D rb;
@@ -170,6 +171,11 @@ namespace Zenra
             {
                 //イベント発行
                 PoliceShotEvent(transform.position.x);
+            }
+            public void SHotEff()//アニメーションイベント
+            {
+                var eff = Instantiate(ShotEffect);
+                eff.transform.position = new Vector3(transform.position.x, transform.position.y + 10, 0);
             }
             void ResetSpeed()
             {
