@@ -22,9 +22,6 @@ namespace Zenra
                 _animator = GetComponent<Animator>();
             }
 
-
-            // アニメーション遷移がうまく行かない。なんかboolをtrueからfalseに
-            // 切り替えるとちゃんと死んでくれる。謎。
             public void PlayerKill()
             {
                 _core.PlayerKill();
