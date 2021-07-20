@@ -55,6 +55,10 @@ namespace Zenra
 
             void Update()
             {
+                if(Input.GetKeyDown(KeyCode.Return))
+                {
+                    SHotEff();
+                }
             }
             private void FixedUpdate()
             {
