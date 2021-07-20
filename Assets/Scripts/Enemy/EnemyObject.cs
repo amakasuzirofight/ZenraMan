@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Zenra.KillLight;
 using Zenject;
+using UnityEngine.Experimental.Rendering.Universal;
 namespace Zenra
 {
     namespace Police
@@ -13,6 +14,8 @@ namespace Zenra
             [SerializeField] GameObject lightHitObj;
             ILightHit lightHit;
             ILightOnOff lightOnOff;
+            const float LIGHTPOWER = 0.5f;
+            [SerializeField] Light2D light2d;
             [SerializeField, Range(0, 10)]
             float moveLenghTime;
             [ContextMenuItem("Reset", "ResetSpeed")]
@@ -62,8 +65,8 @@ namespace Zenra
                 switch (enemystate)
                 {
                     case EnemyState.STAY:
-                        lightOnOff.LightSwitch(true);
-
+                        //lightOnOff.LightSwitch(true);
+                        light2d.intensity=LIGHTPOWER;
                         break;
                     case EnemyState.WEPONCHANGE:
                         //アニメーション
@@ -76,16 +79,16 @@ namespace Zenra
                         //    animator.SetBool("ChangeGunFlg", false);
 
                         //}
-                        lightOnOff.LightSwitch(false);
+                        light2d.intensity = 0;
 
                         break;
                     case EnemyState.SHOT:
                         animator.SetTrigger("GunShotTrigger");
-                        lightOnOff.LightSwitch(false);
+                        light2d.intensity = 0;
 
                         break;
                     case EnemyState.MOVE:
-                        lightOnOff.LightSwitch(true);
+                        light2d.intensity = LIGHTPOWER;
                         MoveBase();
                         break;
                     //case EnemyState.TURN:
@@ -174,6 +177,7 @@ namespace Zenra
             }
             public void ShotgunEnd()//アニメーションイベント
             {
+                Debug.Log(PoliceShotEvent);
                 //イベント発行
                 PoliceShotEvent(transform.position.x);
             }
