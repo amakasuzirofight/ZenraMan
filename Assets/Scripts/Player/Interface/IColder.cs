@@ -1,4 +1,11 @@
-interface IColder
+namespace Zenra
 {
-    void subTemperature(int num);
+    namespace Player
+    {
+
+        interface IColder
+        {
+            void SubTemperature(int num);
+        }
+    }
 }

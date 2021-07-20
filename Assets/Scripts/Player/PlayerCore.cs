@@ -156,7 +156,7 @@ namespace Zenra
                 _hp -= coldAmount;
             }
 
-            void IColder.subTemperature(int num)
+            void IColder.SubTemperature(int num)
             {
                 _hp -= num;
             }
