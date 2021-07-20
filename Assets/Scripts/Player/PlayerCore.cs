@@ -9,7 +9,7 @@ namespace Zenra
 {
     namespace Player
     {
-        public class PlayerCore : IClimbable, IItemUsable, IChangeVariableGimmick
+        public class PlayerCore : IClimbable, IItemUsable, IChangeVariableGimmick, IColder
         {
             private int _hp; //_で変数名を決めておけば_で予測変換が使いやすい　privateで使用されたし
             private List<ItemName> _itemList;
@@ -150,6 +150,11 @@ namespace Zenra
             void IChangeVariableGimmick.SetCold(int coldAmount)
             {
                 _hp -= coldAmount;
+            }
+
+            void IColder.subTemperature(int num)
+            {
+                _hp -= num;
             }
         }
     }
