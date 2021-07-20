@@ -2878,6 +2878,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2024735485044731688, guid: eb0d2c566aad01d4a86c3bd794bdc524,
         type: 3}
       propertyPath: m_RootOrder
@@ -5366,6 +5370,7 @@ MonoBehaviour:
   lightHitObj: {fileID: 5740869719937261438}
   moveLenghTime: 2.15
   speed: 3
+  ShotEffect: {fileID: 0}
 --- !u!4 &5740869721805710047
 Transform:
   m_ObjectHideFlags: 0
