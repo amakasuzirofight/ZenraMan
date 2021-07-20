@@ -26,6 +26,7 @@ namespace Zenra
 
             public void Execute()
             {
+                gimmickAction ??= nullObject;
                 if (gimmickAction == nullObject) return;
                 var GimmickTypeList = gimmickAction.GimmickTypes;
                 gimmickAction?.GimmickAction();
