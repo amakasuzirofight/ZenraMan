@@ -37,9 +37,10 @@ namespace Zenra
             {
                 postEffect.Fade(PostEffectType.PressureFade, 1, Color.white, PostEffector.FadeType.Out);
 
-                await UniTask.Delay(1000);
+                await UniTask.Delay(1150);
 
                 await SceneLoader.LoadSceneAsync($"{name}_{Scenes.Stage}", (op) => postEffect.Fade(PostEffectType.PressureFade, 1, Color.white, PostEffector.FadeType.In));
+                //await SceneLoader.LoadSceneAsync("ShibataScene", (op) => postEffect.Fade(PostEffectType.PressureFade, 1, Color.white, PostEffector.FadeType.In));
             }
         }
     }

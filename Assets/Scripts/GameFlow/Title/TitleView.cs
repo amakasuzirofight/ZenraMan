@@ -20,8 +20,7 @@ namespace Zenra
             [SerializeField] CanvasGroup faceImageGroup = null;
             [SerializeField] FaceDetectorScene faceDetector = null;
 
-            PostEffector postEffect;
-
+            private PostEffector postEffect;
             private IInputer input = null;
 
             [Inject]

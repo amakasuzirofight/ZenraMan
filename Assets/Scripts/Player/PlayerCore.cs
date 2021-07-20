@@ -19,6 +19,8 @@ namespace Zenra
             private bool _isUseItem; // アイテムを使用しているかどうか(隠れるのみならば_isHideと同義)
             private bool _isUseGimmick;
             private bool _isClimb; // はしごに登ってるかどうか
+            private bool _isDead;       // 死んだかどうか
+            public bool isDead {get{return _isDead;}}
 
             private IIsHideChange _isHideChange = new NullEvents();
             private IHpMaxHeal _hpMaxHeal = new NullEvents();
@@ -31,6 +33,7 @@ namespace Zenra
                 _isUseItem = false;
                 _isUseGimmick = false;
                 _isClimb = false;
+                _isDead = false;
                 _hp = MAX_HP;
                 _itemList = new List<ItemName>(ITEM_LIST_LENGH);
                 _isHideChange = MyUtility.Locator<IIsHideChange>.GetT();//myUtilityとはnamespace名　こういう書き方もできる
@@ -79,6 +82,7 @@ namespace Zenra
             public void PlayerKill()
             {
                 _hp = 0;
+                _isDead = true;
                 Debug.Log("死んだ");
             }
 

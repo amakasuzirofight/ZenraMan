@@ -8,7 +8,7 @@ namespace Zenra
 {
     namespace Police
     {
-        public class EnemyObject : MonoBehaviour
+        public class EnemyObject : MonoBehaviour,IPoliceShot
         {
             [SerializeField] FlashLight lightOn;
             [Space(30)]
@@ -24,6 +24,9 @@ namespace Zenra
             Rigidbody2D rb;
             bool InShotLenge = false;//射程内にプレイヤーがいるかどうか
             Animator animator;
+
+            public event PoliceShot_delegate PoliceShotEvent;
+
             void Start()
             {
                 rb = GetComponent<Rigidbody2D>();
@@ -55,6 +58,7 @@ namespace Zenra
             private void FixedUpdate()
             {
                 ActJudge(enemyState);
+                ActJudge(enemyState);
             }
             public void ActJudge(EnemyState enemystate)
             {
@@ -68,17 +72,17 @@ namespace Zenra
                         {
                             animator.SetBool("ChangeGunFlg", true);
                         }
-                        else
-                        {
-                            animator.SetBool("ChangeGunFlg", false);
-                        }
+                        //else
+                        //{
+                        //    animator.SetBool("ChangeGunFlg", false);
+                        //}
                         break;
                     case EnemyState.SHOT:
                         animator.SetTrigger("GunShotTrigger");
 
                         break;
                     case EnemyState.MOVE:
-                        animator.SetBool("ChangeGunFlg", false);
+                        
                         MoveBase();
                         break;
 
@@ -91,6 +95,8 @@ namespace Zenra
             bool isTurn = false;
             bool RandomLaunge = true;
             float rand;
+
+
             void MoveBase()
             {
                
@@ -149,10 +155,22 @@ namespace Zenra
                 }
                 else
                 {
-                    enemyState = EnemyState.MOVE;
+                    animator.SetBool("ChangeGunFlg", false);
                 }
             }
-
+            public void  EndChangeWeponMortion()//アニメーションイベント
+            {
+                animator.SetTrigger("NormalRunTrigger");
+            }
+            public void ShotGun()//アニメーションイベント
+            {
+                animator.SetTrigger("GunShotTrigger");
+            }
+            public void ShotgunEnd()//アニメーションイベント
+            {
+                //イベント発行
+                PoliceShotEvent(transform.position.x);
+            }
             void ResetSpeed()
             {
                 speed = 0;

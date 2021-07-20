@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stages/Mountain_Stage.unity
     guid: d21d69d3e1f3c2146ab0bb5d018aac80
+  - enabled: 1
+    path: Assets/Scenes/ShibataScene.unity
+    guid: 5c00694b58242474c977af5e1ef0d825
   m_configObjects: {}
