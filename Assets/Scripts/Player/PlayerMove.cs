@@ -11,14 +11,17 @@ namespace Zenra
         {
             [SerializeField]//0から50までの値をインスペクターでいじれるようになる
             private float _speed = 0;
+
             private IInputer _input = new NullInputer();//iinputerを作成　何も値入ってない
             private Rigidbody2D _rb2d = null;//ADDforce用RB
             private bool _canClimb = false;
             private Animator _animator = null;   // Animator用
             private SpriteRenderer _spriteRenderer;     // SpriteRenderer用
+            private IPlayerMoveStateGet _IPlayerMoveStateGet;
 
             private float addXSpeed;
             private float addYSpeed;
+            private float moveLock = 1.0f;  // プレイヤーの移動固定用、1.0なら移動可能、0.0なら不可
 
             public enum MoveMode
             {
@@ -34,6 +37,7 @@ namespace Zenra
             {
                 // たぶん自分のIActionClimbをBind
                 MyUtility.Locator<IActionClimb>.Bind(this);
+                _IPlayerMoveStateGet = MyUtility.Locator<PlayerCore>.GetT();
             }
 
             void Start()
@@ -47,8 +51,19 @@ namespace Zenra
 
             void Update()
             {
+                // 移動可能か調べる
+                if(_IPlayerMoveStateGet.IsMove() == false)
+                {
+                    moveLock = 0.0f;
+                }
+                else
+                {
+                    moveLock = 1.0f;
+                }
+
                 // 移動アニメーション管理
-                if(addXSpeed != 0.0f)
+                // アニメーションがおかしいのならifのなかの＆＆以下を消してください
+                if(addXSpeed != 0.0f && moveLock != 0.0f)
                 {
                     float reverse = Mathf.Sign(addXSpeed);      // 右移動なら1.0、左移動なら－1.0、0.0は出ない
                     bool filp = (reverse == -1) ? true : false;     // 左、つまり－1.0ならture
@@ -71,13 +86,13 @@ namespace Zenra
                     {
                         _animator.SetBool("ClimbIdol", false);
                     }
-
-                    
                 }
                 else
                 {
                     _animator.SetBool("Climb", false);
                 }
+
+                
             }
 
             private void FixedUpdate()
@@ -105,7 +120,7 @@ namespace Zenra
                     addXSpeed = 0.0f;
                 }
 
-                _rb2d.velocity = new Vector2(addXSpeed, addYSpeed);     // 移動時に重力が考慮されない
+                _rb2d.velocity = new Vector2(addXSpeed, addYSpeed) * moveLock;     // 移動時に重力が考慮されない
             }
 
             // はしごにプレイヤーの位置を補正する
