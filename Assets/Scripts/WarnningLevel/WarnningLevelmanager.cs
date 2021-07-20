@@ -27,7 +27,7 @@ namespace Zenra.WarnningManager
         public void WarnningLevelUp()
         {
             WarnningLevel++;
-
+            SpornEve(WarnningLevel);
         }
         
     }
