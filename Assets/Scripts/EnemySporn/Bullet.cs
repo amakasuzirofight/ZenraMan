@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlPosx = GameObject.Find("Player").transform.position.x;
+        PlPosx = GameObject.Find("ZenraMan").transform.position.x;
         if(transform.position.x<=PlPosx)
         {
             speed *= -1;
