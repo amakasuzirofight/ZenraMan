@@ -11,15 +11,20 @@ namespace Zenra
         {
             IColder colder;
             // Start is called before the first frame update
-            void Start()
+            IEnumerator Start()
             {
                 colder = Locator<PlayerCore>.GetT();
+                while (true)
+                {
+                    yield return new WaitForSeconds(2f);
+                    colder.SubTemperature(1);
+                }
             }
 
             // Update is called once per frame
             void Update()
             {
-                colder.SubTemperature(1);
+                
             }
         }
     }
