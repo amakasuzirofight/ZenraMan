@@ -12,6 +12,7 @@ namespace Zenra
         public class PlayerCore : IClimbable, IItemUsable, IChangeVariableGimmick, IColder, IPlayerMoveStateGet
         {
             public Action<int> HpChangeAction;
+            public Action PlayerDeadEvent;
             private int _hp;
             private int HP
             {
@@ -23,6 +24,7 @@ namespace Zenra
                 {
                     if (_hp == value) return;
                     _hp = value;
+                    if (_hp < 0) PlayerDeadEvent();
                     HpChangeAction?.Invoke(_hp);
                 }
             } //_で変数名を決めておけば_で予測変換が使いやすい　privateで使用されたし
@@ -181,11 +183,13 @@ namespace Zenra
             void IChangeVariableGimmick.SetCold(int coldAmount)
             {
                 HP -= coldAmount;
+                // 凍えアニメーションはここへ
             }
 
             void IColder.SubTemperature(int num)
             {
                 HP -= num;
+                // 凍えアニメーションはここへ
             }
 
             bool IPlayerMoveStateGet.IsMove()

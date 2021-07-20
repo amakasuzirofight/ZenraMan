@@ -5,7 +5,7 @@ namespace Zenra
     {
         interface IObjectExecutable
         {
-            void Execute();
+            void Execute(UnityEngine.Animator animator);
         }
     }
 }
