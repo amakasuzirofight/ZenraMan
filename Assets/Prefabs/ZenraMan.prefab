@@ -289,6 +289,7 @@ MonoBehaviour:
   Animator: {fileID: 2024735485044731607}
   spriteRenderer: {fileID: 2024735485044731689}
   canvas: {fileID: 4666173921488703424}
+  boxCollider2D: {fileID: 2024735485044731602}
 --- !u!114 &2823948395006372898
 MonoBehaviour:
   m_ObjectHideFlags: 0

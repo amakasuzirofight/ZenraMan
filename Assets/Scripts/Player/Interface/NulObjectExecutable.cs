@@ -8,7 +8,7 @@ namespace Zenra
     {
         public class NulObjectExecutable : IObjectExecutable
         {
-            public void Execute(Animator animator,SpriteRenderer spriteRenderer,Canvas canvas)
+            public void Execute(Animator animator,SpriteRenderer spriteRenderer,Canvas canvas,BoxCollider2D boxCollider2D)
             {
                 Debug.Log("NullObject");
             }
