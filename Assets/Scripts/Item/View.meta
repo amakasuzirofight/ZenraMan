@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/OpenCV+Unity/Demo/Face_Detector/shape_predictor_68_face_landmarks.bytes.meta
+guid: f639e0aeaa51c574c8870c93d1e71f57
+TextScriptImporter:
+=======
 guid: 8470f3d391aea8b418034f60731377ab
 folderAsset: yes
 DefaultImporter:
+>>>>>>> 3d1c74bb0de67e9fd621ef41c7f006b802327e54:Assets/Scripts/Item/View.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

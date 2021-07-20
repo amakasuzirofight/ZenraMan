@@ -20,12 +20,12 @@ namespace Zenra
 
             bool IInputer.IsItemButtonDown()
             {
-                return Input.GetKeyDown(KeyCode.Space);
+                return Input.GetKeyDown(KeyCode.Alpha1);
             }
 
             bool IInputer.IsGimmickActivateButtonDown()
             {
-                return Input.GetKeyDown(KeyCode.Alpha1);
+                return Input.GetKeyDown(KeyCode.Space);
             }
 
             bool IInputer.IsLadderClimbButtonDown()
