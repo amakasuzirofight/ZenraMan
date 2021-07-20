@@ -26,7 +26,6 @@ namespace Zenra
             void Awake() 
             {
                 _playerCore = MyUtility.Locator<PlayerCore>.GetT();
-
                 Debug.Log(_IPoliceShot);
             }
 
@@ -48,7 +47,6 @@ namespace Zenra
                         // 正直Event生やしたい
                         if(playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.4f)
                         {
-                            
                             HeadExplosion();
                         }
                     }
@@ -84,6 +82,7 @@ namespace Zenra
                 if(other.GetComponent<IShotable>() != null)
                 {
                     _playerCore.PlayerKill();
+                    Debug.Log("Hit");
                 }
             }
         }
