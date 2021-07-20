@@ -4,16 +4,18 @@ using UnityEngine;
 using DG.Tweening;
 using Zenra.KillLight;
 using Zenject;
+using UnityEngine.Experimental.Rendering.Universal;
 namespace Zenra
 {
     namespace Police
     {
         public class EnemyObject : MonoBehaviour,IPoliceShot
         {
-            [SerializeField] FlashLight lightOn;
-            [Space(30)]
             [SerializeField] GameObject lightHitObj;
             ILightHit lightHit;
+            ILightOnOff lightOnOff;
+            const float LIGHTPOWER = 0.5f;
+            [SerializeField] Light2D light2d;
             [SerializeField, Range(0, 10)]
             float moveLenghTime;
             [ContextMenuItem("Reset", "ResetSpeed")]
@@ -35,6 +37,7 @@ namespace Zenra
                 lightHit = lightHitObj.GetComponent<ILightHit>();
                 lightHit.LightHitEvent += LightHit_LightHitEvent;
                 lightHit.LightExitEvent += LightHit_LightExitEvent;
+                lightOnOff = lightHitObj.GetComponent<ILightOnOff>();
             }
 
             private void LightHit_LightHitEvent()
@@ -52,13 +55,9 @@ namespace Zenra
 
             void Update()
             {
-                //最初にどれくらい移動するかを決めて移動する。移動の途中でランダムで止まる。
-                //持ち替えている間に隠れて居なければ撃つ
-                //とりあえず移動と反転だけ行う
             }
             private void FixedUpdate()
             {
-                ActJudge(enemyState);
                 ActJudge(enemyState);
             }
             public void ActJudge(EnemyState enemystate)
@@ -66,30 +65,39 @@ namespace Zenra
                 switch (enemystate)
                 {
                     case EnemyState.STAY:
+                        //lightOnOff.LightSwitch(true);
+                        light2d.intensity=LIGHTPOWER;
                         break;
                     case EnemyState.WEPONCHANGE:
                         //アニメーション
-                        if(InShotLenge)
+                        if (InShotLenge)
                         {
                             animator.SetBool("ChangeGunFlg", true);
                         }
                         //else
                         //{
                         //    animator.SetBool("ChangeGunFlg", false);
+
                         //}
+                        light2d.intensity = 0;
+
                         break;
                     case EnemyState.SHOT:
                         animator.SetTrigger("GunShotTrigger");
+                        light2d.intensity = 0;
 
                         break;
                     case EnemyState.MOVE:
-                        
+                        light2d.intensity = LIGHTPOWER;
                         MoveBase();
                         break;
-
+                    //case EnemyState.TURN:
+                    //    lightOnOff.LightSwitch(true);
+                    //    break;
                     default:
                         break;
                 }
+                
             }
 
             bool canrun = true;
@@ -144,7 +152,6 @@ namespace Zenra
                     canrun = true;
                     timecount = 0;
                     RandomLaunge = true;
-                    lightOn.LightSwitch(true);
                 }
             }
             IEnumerator ChangeGun()
@@ -162,10 +169,11 @@ namespace Zenra
             public void  EndChangeWeponMortion()//アニメーションイベント
             {
                 animator.SetTrigger("NormalRunTrigger");
+                enemyState = EnemyState.MOVE;
             }
             public void ShotGun()//アニメーションイベント
             {
-                animator.SetTrigger("GunShotTrigger");
+                enemyState = EnemyState.SHOT;
             }
             public void ShotgunEnd()//アニメーションイベント
             {

@@ -45,7 +45,6 @@ namespace Zenra
                     if (isCoroutine == false)//‚±‚ÌğŒ‰º‚Ìˆê“x‚¾‚¯‚â‚Á‚Ä‚Ù‚µ‚¢
                     {
                         isCoroutine = true;
-                        Debug.Log("”½“]I");
                         isturn = true;
                         StartCoroutine(Turn());
                     }
