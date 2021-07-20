@@ -28,14 +28,7 @@ namespace Zenra
             public void PlayerKill()
             {
                 _core.PlayerKill();
-                StartCoroutine("KillAnimation");
-            }
-
-            IEnumerator KillAnimation()
-            {
-                _animator.SetBool("Dead", true);
-                yield return new WaitForSeconds(0.001f);
-                _animator.SetBool("Dead", false);
+                _animator.SetTrigger("Dead");
             }
         }
     }
