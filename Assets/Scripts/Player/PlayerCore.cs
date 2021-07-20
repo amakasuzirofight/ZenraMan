@@ -187,6 +187,7 @@ namespace Zenra
             {
                 if (_isDead) return false;
                 if (_isUseGimmick) return false;
+                if (_isUseItem) return false;
                 return true;
             }
         }
