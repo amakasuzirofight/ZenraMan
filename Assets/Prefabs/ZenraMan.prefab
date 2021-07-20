@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 2276723008266327279}
   - component: {fileID: 5291123239042330828}
   - component: {fileID: 2971665176211590764}
+  - component: {fileID: 1796611084884970338}
   m_Layer: 0
   m_Name: ZenraMan
   m_TagString: Untagged
@@ -332,6 +333,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e23bb3c10a4dd4d838d90ced9407fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1796611084884970338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024735485044731691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40143ffb89c276f4a98d4e0c9ebdcdb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPower: 10000
+  playerAnimator: {fileID: 2024735485044731607}
+  playerHead: {fileID: 7534731363689956915}
 --- !u!1 &7534731363689956915
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,8 +360,6 @@ GameObject:
   - component: {fileID: 4666173921488703424}
   - component: {fileID: 956317288523230863}
   - component: {fileID: 2221306615877193228}
-  - component: {fileID: 1879673957137885596}
-  - component: {fileID: 7113444068971368302}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -434,39 +448,3 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!50 &1879673957137885596
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7534731363689956915}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &7113444068971368302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7534731363689956915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40143ffb89c276f4a98d4e0c9ebdcdb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionPower: 10000
-  playerAnimator: {fileID: 2024735485044731607}
-  boxCollider2D: {fileID: 0}
