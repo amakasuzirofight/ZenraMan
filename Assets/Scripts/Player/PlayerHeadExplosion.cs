@@ -20,7 +20,7 @@ namespace Zenra
 
             private PlayerCore _playerCore = null;
             private Rigidbody2D rigidbody2D = null;
-            private bool _playerDead;
+            private bool dead = false;
             private bool once = false;
             private float dir = -1.0f;
 
@@ -36,9 +36,7 @@ namespace Zenra
 
             void Update()
             {
-                // これじゃダメなんだけどどうすることもできなかった…
-                _playerDead = _playerCore.isDead;
-                if(_playerDead == true && once == false)
+                if(dead == true && once == false)
                 {
                     // Deadステートにいるのか調べる
                     if(playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Dead") == true)
@@ -61,41 +59,24 @@ namespace Zenra
                 once = true;
             }
 
-            // void EnemyShot(float enemyPos)
-            // {
-            //     Debug.Log("EnemyShot");
-            //     float d = enemyPos - this.transform.position.x;
-            //     if(d < 0.0f)
-            //     {
-            //         // (プレイヤー) - (エネミー)がマイナスなら頭を右に吹き飛ぶためにdirを「＋」にする。
-            //         dir = 1.0f;
-            //     }
-            //     else
-            //     {
-            //         // (プレイヤー) - (エネミー)がプラスなら頭を左に吹き飛ぶためにdirを「ー」にする。
-            //         dir = -1.0f;
-            //     }
-            // }
-
             private void OnTriggerEnter2D(Collider2D other) 
             {
                 if(other.GetComponent<IShotable>() != null)
                 {
-                    // _playerCore.PlayerKill();
-                    Debug.Log("Hit");
+                    _playerCore.PlayerKill();
+                    
+                    // Debug.Log("Hit");
                     float d = other.transform.position.x - this.transform.transform.position.x;
                     if(d < 0.0f)
                     {
-                        
                         dir = 1.0f;
                     }
                     else
                     {
-                        
                         dir = -1.0f;
                     }
-
-                    HeadExplosion();
+                    dead = true;
+                    playerAnimator.SetTrigger("Dead");
                 }
             }
         }
