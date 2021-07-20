@@ -14,11 +14,13 @@ namespace Zenra
 
             [SerializeField, Tooltip("プレイヤーAnimator")]
             Animator playerAnimator;
-            
+
+            [SerializeField,Tooltip("プレイヤーのコライダー")]
+            BoxCollider2D boxCollider2D;
             private IPoliceShot _IPoliceShot;
 
             private PlayerCore _playerCore = null;
-            private Rigidbody2D rigidbody2D = null;
+            private Rigidbody2D rigidbody2D;
             private bool _playerDead;
             private bool once = false;
             private float dir = -1.0f;
@@ -31,7 +33,7 @@ namespace Zenra
 
             void Start()
             {
-                
+                rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
             }
 
             void Update()
@@ -55,7 +57,7 @@ namespace Zenra
 
             void HeadExplosion()
             {
-                rigidbody2D = this.gameObject.AddComponent<Rigidbody2D>();
+                // rigidbody2D = this.gameObject.AddComponent<Rigidbody2D>();
                 rigidbody2D.AddForce(new Vector3(dir * explosionPower, explosionPower / 5.0f, 0.0f), ForceMode2D.Impulse);
                 Debug.Log("HeadExplosion");
                 once = true;
