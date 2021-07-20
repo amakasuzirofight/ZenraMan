@@ -13,8 +13,8 @@ namespace Zenra
         {
             public Action<int> HpChangeAction;
             private int _hp;
-            private int HP 
-            { 
+            private int HP
+            {
                 get
                 {
                     return _hp;
@@ -34,8 +34,8 @@ namespace Zenra
             private bool _isUseGimmick;
             private bool _isClimb; // はしごに登ってるかどうか
             private bool _isDead;       // 死んだかどうか
-            public bool isDead {get{return _isDead;}}
-
+            public bool isDead { get { return _isDead; } }
+            public Action<ItemName> ItemStateChangeEvent;
             private IIsHideChange _isHideChange = new NullEvents();
             private IHpMaxHeal _hpMaxHeal = new NullEvents();
             private IHpSmallHeal _hpSmallHeal = new NullEvents();
@@ -58,9 +58,9 @@ namespace Zenra
                 _hpSmallHeal.SmallHealEvent += HpHealSmall;
                 //_ = Hoge();　破棄　_=にすると戻り値があってもVoidと同じ処理速度でやってくれるぽい
             }
-           
+
             public bool IsRetentionItem() => _itemList.Count > 0;//アイテムを持っているかどうか
-            
+
             public ItemName GetItem()
             {
                 if (_itemList.Count < 1) return ItemName.NULL;
@@ -70,6 +70,7 @@ namespace Zenra
             public ItemName UseItem()
             {
                 if (_itemList.Count < 1) return ItemName.NULL;
+                ItemStateChangeEvent(ItemName.NULL);
                 var temp = _itemList[0];
                 _itemList?.RemoveAt(0);//ItemListがnullだったらRemoveAtを実行しない
                 return temp;
@@ -82,8 +83,13 @@ namespace Zenra
                     ItemActivation(name);
                     return;
                 }
-                if (_itemList.Count >= ITEM_LIST_LENGH) return;
+                if (_itemList.Count >= ITEM_LIST_LENGH)
+                {
+                    ItemStateChangeEvent(ItemName.NULL);
+                    return;
+                }
                 _itemList.Add(name);
+                ItemStateChangeEvent(name);
             }
 
             private bool IsActivate(ItemName name)
