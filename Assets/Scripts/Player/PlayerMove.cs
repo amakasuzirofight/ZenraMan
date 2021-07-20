@@ -62,12 +62,10 @@ namespace Zenra
                 }
 
                 // 移動アニメーション管理
-                // アニメーションがおかしいのならifのなかの＆＆以下を消してください
                 if(addXSpeed != 0.0f && moveLock != 0.0f)
                 {
                     float reverse = Mathf.Sign(addXSpeed);      // 右移動なら1.0、左移動なら－1.0、0.0は出ない
-                    bool filp = (reverse == -1) ? true : false;     // 左、つまり－1.0ならture
-                    _spriteRenderer.flipX = filp;       // 左、つまり－1.0ならSpriteRendererのflipXする
+                    this.gameObject.transform.localScale = new Vector3(reverse, 1.0f, 1.0f);        // 描画反転処理
                     _animator.SetBool("Walk", true);    // 移動アニメーション
                 }
                 else
