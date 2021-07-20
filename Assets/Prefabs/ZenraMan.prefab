@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 2823948395006372898}
   - component: {fileID: 2276723008266327279}
   - component: {fileID: 5291123239042330828}
+  - component: {fileID: 2971665176211590764}
   m_Layer: 0
   m_Name: ZenraMan
   m_TagString: Untagged
@@ -316,6 +317,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e4b7e247dc6d8d48804f74e6be6d0b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2971665176211590764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024735485044731691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e23bb3c10a4dd4d838d90ced9407fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7534731363689956915
