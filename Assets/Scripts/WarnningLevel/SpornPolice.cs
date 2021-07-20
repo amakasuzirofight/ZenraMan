@@ -22,6 +22,7 @@ public class SpornPolice : MonoBehaviour
     }
     void PoliceSummon(int Level)
     {
+        Debug.Log("è¢ä´");
         if(Level==thisSpornLevel)
         {
             var t = Instantiate(Police);
